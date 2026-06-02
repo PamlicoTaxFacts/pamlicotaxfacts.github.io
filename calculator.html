@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Will the New Tax Rate Cost YOU? · Pamlico Tax Facts</title>
+<meta name="description" content="Compare your Pamlico County tax bill before and after the 2026 revaluation, and see how much the proposed rate costs you versus revenue-neutral.">
+<meta property="og:title" content="What Will Pamlico County's New Tax Rate Cost YOU?">
+<meta property="og:description" content="Enter your old and new property values: see your bill before vs. after the 2026 revaluation, at the proposed 52.5¢ vs. revenue-neutral 43.5¢.">
+<style>
+  :root{--ink:#15202b;--muted:#5b6b7a;--bg:#f7f9fb;--card:#fff;--line:#e3e9ef;
+    --red:#c0392b;--navy:#2c6e91;--green:#2e8b57;--grey:#9aa7b2;--maxw:760px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,#1a2a38,#2c6e91);color:#fff;padding:38px 18px 30px}
+  header h1{font-size:clamp(24px,5vw,36px);margin:0 0 6px;font-weight:800;letter-spacing:-.5px}
+  header p{margin:0;opacity:.92;font-size:clamp(15px,2.3vw,18px)}
+  header .back{display:inline-block;margin-bottom:14px;color:#bfe0f0;text-decoration:none;font-size:14px;font-weight:600}
+  main{padding:26px 0 10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:18px 0;
+    box-shadow:0 1px 3px rgba(20,40,60,.05)}
+  label{display:block;font-weight:700;font-size:14px;margin-bottom:8px}
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:520px){.vgrid{grid-template-columns:1fr}}
+  .valwrap{position:relative}
+  .valwrap span.dollar{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:19px;color:var(--muted);font-weight:700}
+  .valwrap input{width:100%;font-size:21px;font-weight:700;padding:12px 12px 12px 30px;border:2px solid var(--line);
+    border-radius:12px;color:var(--ink)}
+  .valwrap input:focus{outline:none;border-color:var(--navy)}
+  .valwrap.old input{border-color:#d8dee4}
+  .valwrap.new input{border-color:#cfe0ea}
+  .sublabel{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .hint{font-size:13px;color:var(--muted);margin-top:10px}
+  .ratehead{display:flex;justify-content:space-between;align-items:baseline;margin-top:22px}
+  .ratehead .rateval{font-size:28px;font-weight:800}
+  .ratehead .rateval small{font-size:14px;color:var(--muted);font-weight:600}
+  input#rate{width:100%;margin:14px 0 6px;accent-color:var(--red);height:6px}
+  .ticks{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted)}
+  .snaps{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .snaps button{flex:1;min-width:130px;border:1px solid var(--line);background:#fff;border-radius:10px;
+    padding:10px;cursor:pointer;font-weight:700;font-size:13px;color:var(--ink);transition:.15s}
+  .snaps button:hover{border-color:var(--navy)}
+  .snaps button .s{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-top:2px}
+  .snaps button.neutral{border-color:var(--green)}.snaps button.neutral .c{color:var(--green)}
+  .snaps button.proposed{border-color:var(--red)}.snaps button.proposed .c{color:var(--red)}
+  .snaps button.old{border-color:var(--grey)}
+  .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center}
+  @media(max-width:560px){.three{grid-template-columns:1fr;gap:8px}}
+  .three .b{border:1px solid var(--line);border-radius:12px;padding:14px 10px}
+  .three .b .h{font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:700;min-height:30px}
+  .three .b .v{font-size:clamp(22px,5vw,30px);font-weight:800;line-height:1;margin-top:6px}
+  .three .b .r{font-size:12px;color:var(--muted);margin-top:4px}
+  .three .b.now{background:#fff5f4;border-color:var(--red)}.three .b.now .v{color:var(--red)}
+  .three .b.neu{background:#f1f9f4;border-color:var(--green)}.three .b.neu .v{color:var(--green)}
+  .deltas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  @media(max-width:520px){.deltas{grid-template-columns:1fr}}
+  .deltas .box{border-radius:12px;padding:14px;border:1px solid var(--line)}
+  .deltas .box .h{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700}
+  .deltas .box .v{font-size:22px;font-weight:800;margin-top:4px}
+  .deltas .box.up{background:#fff5f4;border-color:var(--red)}.deltas .box.up .v{color:var(--red)}
+  .deltas .box.down{background:#f1f9f4;border-color:var(--green)}.deltas .box.down .v{color:var(--green)}
+  .msg{margin-top:16px;border-left:4px solid var(--red);background:#fff5f4;padding:14px 16px;border-radius:0 10px 10px 0;font-size:15px}
+  .msg.good{border-color:var(--green);background:#f1f9f4}
+  .foot{font-size:12px;color:var(--muted);margin:14px 0 40px}
+  .foot a{color:var(--navy)}
+  .share{margin-top:14px}
+  .share button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="back" href="index.html">← Back to the full report</a>
+  <h1>What will the new tax rate cost <u>you</u>?</h1>
+  <p>Enter your old and new property values to see your county tax bill <strong>before vs. after</strong> the 2026 revaluation — and how much the proposed rate costs you versus revenue-neutral.</p>
+</div></header>
+
+<main class="wrap">
+  <div class="card">
+    <div class="vgrid">
+      <div>
+        <div class="sublabel">PRIOR assessed value (before 2026)</div>
+        <div class="valwrap old"><span class="dollar">$</span>
+          <input id="oldval" type="text" inputmode="numeric" value="200,000" autocomplete="off"></div>
+      </div>
+      <div>
+        <div class="sublabel">NEW 2026 assessed value</div>
+        <div class="valwrap new"><span class="dollar">$</span>
+          <input id="newval" type="text" inputmode="numeric" value="296,552" autocomplete="off"></div>
+      </div>
+    </div>
+    <p class="hint">Find both on your reappraisal notice (or your old tax bill + new notice). County tax only — town and fire-district taxes are separate. Your old bill used the <strong>old 64.5¢</strong> rate; your new bill uses the new rate you set below.</p>
+
+    <div class="ratehead">
+      <label style="margin:0">NEW county tax rate</label>
+      <div class="rateval"><span id="ratec">52.5</span>¢ <small>per $100 · <span id="rated">0.00525</span></small></div>
+    </div>
+    <input id="rate" type="range" min="30" max="75" step="0.5" value="43.5">
+    <div class="ticks"><span>30¢</span><span>neutral 43.5¢</span><span>proposed 52.5¢</span><span>old 64.5¢</span><span>75¢</span></div>
+
+    <div class="snaps">
+      <button class="neutral" data-r="43.5">Revenue-neutral<span class="s"><span class="c">43.5¢</span> · holds you harmless</span></button>
+      <button class="proposed" data-r="52.5">Proposed<span class="s"><span class="c">52.5¢</span> · ~21% above neutral</span></button>
+      <button class="old" data-r="64.5">Old rate<span class="s">64.5¢ · FY2025-26</span></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="three">
+      <div class="b"><div class="h">Before<br>(old value @ 64.5¢)</div><div class="v" id="oldBill">$1,290</div><div class="r" id="oldR">your prior bill</div></div>
+      <div class="b now"><div class="h">Now<br>(new value @ <span id="nowRate">52.5</span>¢)</div><div class="v" id="newBill">$2,100</div><div class="r">your new bill</div></div>
+      <div class="b neu"><div class="h">If revenue-neutral<br>(new value @ 43.5¢)</div><div class="v" id="neuBill">$1,740</div><div class="r">would-be bill</div></div>
+    </div>
+    <div class="deltas">
+      <div class="box up" id="changeBox"><div class="h" id="changeH">Change to your bill</div><div class="v" id="changeV">+$810/yr</div></div>
+      <div class="box up" id="extraBox"><div class="h" id="extraH">Extra vs revenue-neutral</div><div class="v" id="extraV">+$360/yr</div></div>
+    </div>
+    <div class="msg" id="msg"></div>
+    <div class="share">
+      <button id="shareBtn">🔗 Copy a shareable link to these numbers</button>
+    </div>
+  </div>
+
+  <p class="foot">
+    Estimate only, for the <strong>county</strong> property-tax rate (per $100 of assessed value). Your actual bill may include municipal, fire-district, or other rates and any exemptions. Rates: old 64.5¢ (FY2025-26, per NCDOR/county); revenue-neutral 43.5¢ and proposed 52.5¢ for FY2026-27 (County Compass, Apr 27 2026). Figures and sources in the <a href="index.html">full report</a>. Independent citizen analysis.
+  </p>
+</main>
+
+<script>
+const NEUTRAL=43.5, PROPOSED=52.5, OLD_RATE=64.5;
+const $=id=>document.getElementById(id);
+const money=n=>"$"+Math.round(n).toLocaleString();
+const pctOf=(a,b)=> b>0 ? (a/b-1)*100 : 0;
+
+function num(id){return Math.max(0, parseFloat($(id).value.replace(/[^0-9.]/g,""))||0);}
+function rate(){return parseFloat($("rate").value);}
+
+function render(){
+  const oldv=num("oldval"), newv=num("newval"), r=rate();
+  const oldBill = oldv*OLD_RATE/10000;     // value × (cents/$100) ÷ 10,000
+  const newBill = newv*r/10000;
+  const neuBill = newv*NEUTRAL/10000;
+  const change  = newBill-oldBill;
+  const extra   = newBill-neuBill;
+
+  $("ratec").textContent=r.toFixed(1);
+  $("nowRate").textContent=r.toFixed(1);
+  $("rated").textContent=(r/10000).toFixed(5);
+  $("oldBill").textContent=money(oldBill);
+  $("newBill").textContent=money(newBill);
+  $("neuBill").textContent=money(neuBill);
+
+  // change vs old bill
+  const cb=$("changeBox");
+  if(change>0.5){cb.className="box up";$("changeH").textContent="Increase to your bill";$("changeV").textContent="+"+money(change)+"/yr  ("+pctOf(newBill,oldBill).toFixed(0)+"%)";}
+  else if(change<-0.5){cb.className="box down";$("changeH").textContent="Decrease to your bill";$("changeV").textContent="−"+money(Math.abs(change))+"/yr  ("+pctOf(newBill,oldBill).toFixed(0)+"%)";}
+  else{cb.className="box";$("changeH").textContent="Change to your bill";$("changeV").textContent="about the same";}
+
+  // extra vs revenue-neutral
+  const eb=$("extraBox");
+  if(extra>0.5){eb.className="box up";$("extraH").textContent="Extra vs revenue-neutral";$("extraV").textContent="+"+money(extra)+"/yr  ("+pctOf(newBill,neuBill).toFixed(0)+"%)";}
+  else if(extra<-0.5){eb.className="box down";$("extraH").textContent="Below revenue-neutral";$("extraV").textContent="−"+money(Math.abs(extra))+"/yr";}
+  else{eb.className="box";$("extraH").textContent="vs revenue-neutral";$("extraV").textContent="about even";}
+
+  // narrative
+  const m=$("msg");
+  const rateFell = r < OLD_RATE;
+  if(change>0.5){
+    m.className="msg";
+    m.innerHTML="Your value rose from <strong>"+money(oldv)+"</strong> to <strong>"+money(newv)+"</strong>. "+
+      (rateFell?"Even though the rate <em>fell</em> from 64.5¢ to "+r.toFixed(1)+"¢, ":"At "+r.toFixed(1)+"¢, ")+
+      "your bill goes from <strong>"+money(oldBill)+"</strong> to <strong>"+money(newBill)+"</strong> — <strong>+"+money(change)+"/yr</strong>. "+
+      (extra>0.5?"At the revenue-neutral 43.5¢ it would be "+money(neuBill)+", so the "+r.toFixed(1)+"¢ rate costs you <strong>"+money(extra)+" more</strong> than holding you harmless.":"");
+  }else if(change<-0.5){
+    m.className="msg good";
+    m.innerHTML="At "+r.toFixed(1)+"¢ on your new value, your bill would be <strong>"+money(newBill)+"</strong> — <strong>"+money(Math.abs(change))+"/yr less</strong> than your old "+money(oldBill)+" bill.";
+  }else{
+    m.className="msg";
+    m.innerHTML="At "+r.toFixed(1)+"¢ your new bill (<strong>"+money(newBill)+"</strong>) is about the same as your old bill ("+money(oldBill)+").";
+  }
+}
+
+function attachFmt(id){
+  $(id).addEventListener("input",e=>{const n=num(id);e.target.value=n?n.toLocaleString():"";render();});
+}
+attachFmt("oldval"); attachFmt("newval");
+$("rate").addEventListener("input",render);
+document.querySelectorAll(".snaps button").forEach(b=>b.addEventListener("click",()=>{$("rate").value=b.dataset.r;render();}));
+
+$("shareBtn").addEventListener("click",async()=>{
+  const url=location.origin+location.pathname+"#o="+num("oldval")+"&n="+num("newval")+"&r="+rate();
+  try{await navigator.clipboard.writeText(url);$("shareBtn").textContent="✓ Link copied!";}
+  catch(e){$("shareBtn").textContent=url;}
+  setTimeout(()=>{$("shareBtn").textContent="🔗 Copy a shareable link to these numbers";},2500);
+});
+
+(function(){
+  const h=new URLSearchParams(location.hash.slice(1));
+  if(h.get("o")) $("oldval").value=Number(h.get("o")).toLocaleString();
+  if(h.get("n")) $("newval").value=Number(h.get("n")).toLocaleString();
+  if(h.get("r")) $("rate").value=h.get("r");
+})();
+render();
+</script>
+</body>
+</html>

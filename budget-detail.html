@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detailed Budget Breakdown · Pamlico Tax Facts</title>
+<meta name="description" content="Year-by-year Pamlico County budget detail FY2019-20 to FY2025-26: revenue by category, spending by department, COVID/ARPA money, and where spending grew fastest.">
+<meta property="og:title" content="Pamlico County Budget — Detailed Breakdown">
+<meta property="og:description" content="The working deep-dive: revenue and spending line items year by year, the COVID/ARPA money, and growth/bloat leads.">
+<style>
+  :root{--ink:#15202b;--muted:#5b6b7a;--bg:#f7f9fb;--card:#fff;--line:#e3e9ef;--red:#c0392b;--navy:#2c6e91;--green:#2e8b57;--warn:#d68910;--maxw:1000px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,#1a2a38,#2c6e91);color:#fff;padding:36px 18px 28px}
+  header h1{font-size:clamp(24px,5vw,38px);margin:0 0 8px;font-weight:800;letter-spacing:-.5px}
+  header p{margin:0;opacity:.93;font-size:clamp(15px,2.3vw,18px)}
+  header .nav{margin-bottom:14px;font-size:14px;font-weight:600}
+  header .nav a{color:#bfe0f0;text-decoration:none;margin-right:16px}
+  section{padding:26px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:clamp(19px,3.2vw,25px);margin:0 0 4px;font-weight:800}
+  .kicker{text-transform:uppercase;letter-spacing:1.4px;font-size:12px;color:var(--navy);font-weight:700;margin-bottom:6px}
+  p.lead{font-size:16px}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff;margin:14px 0}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:720px}
+  th,td{text-align:right;padding:7px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#fff}
+  thead th{background:#f0f4f8;position:sticky;top:0}
+  thead th:first-child{z-index:2}
+  tr.total td{font-weight:800;background:#f7fafc}
+  tr.sub td:first-child{padding-left:22px;color:var(--muted);font-weight:400}
+  tr.flag td{background:#fff5f4}
+  .up{color:var(--red);font-weight:700}
+  .callout{border-left:4px solid var(--navy);background:#eef6fb;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14px}
+  .callout.warn{border-left-color:var(--warn);background:#fffaf0}
+  .callout.red{border-left-color:var(--red);background:#fff5f4}
+  .note{font-size:12.5px;color:var(--muted)}
+  ul.clean{padding-left:20px}ul.clean li{margin:7px 0}
+  .wip{display:inline-block;background:#fef5e7;color:#9c6310;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
+  .btn{display:inline-block;background:var(--navy);color:#fff;font-weight:700;font-size:14px;padding:11px 18px;border-radius:10px;text-decoration:none}
+  footer{padding:28px 18px 70px;color:var(--muted);font-size:13px}
+  footer a{color:var(--navy)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="nav"><a href="index.html">← Full report</a><a href="calculator.html">🧮 Calculator</a><a href="documents.html">📄 Documents</a><a href="get-involved.html">🤝 Get Involved</a></div>
+  <h1>Detailed budget breakdown</h1>
+  <p>The working deep-dive — revenue and spending, line by line, year by year. This is where we hunt for bloat, unwarranted growth, and the COVID-money question. <strong>A work in progress</strong>; corrections and tips welcome on the <a href="get-involved.html" style="color:#fff;text-decoration:underline">Get Involved</a> page.</p>
+</div></header>
+
+<main class="wrap">
+
+<section>
+  <div class="kicker">The big picture</div>
+  <h2>General Fund grew ~30% in six years; population stayed flat</h2>
+  <p class="lead">Adopted General Fund spending rose from <strong>$19.9M (FY2019-20)</strong> to <strong>~$26.98M (FY2025-26)</strong> — about <strong>+29.6%</strong> — while county population held near <strong>12,300</strong>. Property tax (now &gt;half of revenue) and a recurring <strong>fund-balance draw</strong> (~$2M/yr) carried the gap. The tables below break that down; the question is which increases are justified and which are bloat.</p>
+  <div class="callout">All figures are from the county's adopted budget line-item reports (Tyler/Munis), FY2019-20 → FY2025-26. Column conventions differ slightly by year; "requested" columns (FY25-26) are pre-adoption. Cross-check anything important against the source PDFs on the <a href="documents.html">Documents</a> page.</div>
+</section>
+
+<section>
+  <div class="kicker">Revenue</div>
+  <h2>General Fund revenue by category</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Category ($)</th><th>FY19-20</th><th>FY20-21</th><th>FY21-22</th><th>FY22-23</th><th>FY23-24</th><th>FY24-25</th><th>FY25-26</th></tr></thead>
+    <tbody>
+      <tr class="total"><td>GENERAL FUND TOTAL</td><td>19,897,135</td><td>20,890,170</td><td>22,806,413</td><td>23,882,107</td><td>24,627,767</td><td>25,795,429</td><td>26,976,604</td></tr>
+      <tr><td>Ad valorem (property) — total</td><td>10,820,000</td><td>11,682,871</td><td>11,986,698</td><td>12,359,000</td><td>12,489,000</td><td>12,914,213</td><td>13,948,000</td></tr>
+      <tr class="sub"><td>real &amp; personal property</td><td>9,530,000</td><td>10,432,871</td><td>10,441,698</td><td>10,745,000</td><td>10,850,000</td><td>11,218,213</td><td>12,290,000</td></tr>
+      <tr class="sub"><td>motor vehicles (DMV)</td><td>835,000</td><td>835,000</td><td>1,000,000</td><td>1,065,000</td><td>1,120,000</td><td>1,503,000</td><td>1,503,000</td></tr>
+      <tr><td>Sales tax</td><td>2,748,000</td><td>2,300,000</td><td>3,411,000</td><td>3,897,000</td><td>4,373,000</td><td>4,580,000</td><td>4,850,000</td></tr>
+      <tr><td>State intergov — DSS</td><td>1,811,159</td><td>1,900,011</td><td>2,065,011</td><td>2,163,736</td><td>1,973,017</td><td>1,799,111</td><td>1,805,011</td></tr>
+      <tr><td>State intergov — Health</td><td>394,320</td><td>405,947</td><td>384,569</td><td>340,844</td><td>302,861</td><td>631,577</td><td>535,222</td></tr>
+      <tr><td>Federal intergov — DSS</td><td>180,086</td><td>170,160</td><td>208,160</td><td>173,160</td><td>160,315</td><td>153,410</td><td>122,410</td></tr>
+      <tr><td>Jail / federal-inmate fees</td><td>1,125,000</td><td>1,235,000</td><td>1,250,000</td><td>1,400,000</td><td>1,020,000</td><td>1,300,000</td><td>1,100,000</td></tr>
+      <tr><td>Investment earnings</td><td>125,000</td><td>25,000</td><td>2,000</td><td>4,000</td><td>400,000</td><td>500,000</td><td>480,000</td></tr>
+      <tr><td>Permits &amp; fees</td><td>249,600</td><td>259,400</td><td>341,300</td><td>353,800</td><td>360,800</td><td>420,250</td><td>510,700</td></tr>
+      <tr class="flag"><td>Fund balance appropriated (savings)</td><td>1,398,764</td><td>1,901,736</td><td>1,639,334</td><td>2,099,815</td><td>2,388,759</td><td>1,580,600</td><td>2,131,197</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Sales tax grew +77% over the period (the biggest organic gain). The county balances the budget every year by spending fund balance (savings) — flagged row.</p>
+</section>
+
+<section>
+  <div class="kicker">Spending</div>
+  <h2>General Fund expenditures by department</h2>
+  <p class="note">FY25-26 column = last cleanly department-allocated adopted figures; see <a href="documents.html">source PDFs</a> for the in-progress year.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Department ($)</th><th>FY19-20</th><th>FY20-21</th><th>FY21-22</th><th>FY22-23</th><th>FY23-24</th><th>FY24-25</th><th>FY25-26</th></tr></thead>
+    <tbody>
+      <tr><td>Governing Body</td><td>489,985</td><td>508,300</td><td>535,000</td><td>558,400</td><td>712,000</td><td>848,601</td><td>848,601</td></tr>
+      <tr><td>County Manager</td><td>183,770</td><td>188,244</td><td>203,007</td><td>232,735</td><td>242,279</td><td>253,744</td><td>253,744</td></tr>
+      <tr><td>Personnel / HR</td><td>154,467</td><td>181,954</td><td>185,766</td><td>237,814</td><td>412,693</td><td>257,096</td><td>257,096</td></tr>
+      <tr><td>Finance</td><td>371,071</td><td>379,192</td><td>373,381</td><td>405,689</td><td>423,730</td><td>497,845</td><td>497,845</td></tr>
+      <tr><td>Tax Listing</td><td>537,008</td><td>567,236</td><td>570,800</td><td>604,006</td><td>600,567</td><td>637,473</td><td>637,473</td></tr>
+      <tr><td>Board of Elections</td><td>313,348</td><td>181,705</td><td>203,175</td><td>214,754</td><td>213,666</td><td>253,165</td><td>253,165</td></tr>
+      <tr><td>Register of Deeds</td><td>153,473</td><td>155,031</td><td>162,657</td><td>185,021</td><td>184,142</td><td>222,450</td><td>222,450</td></tr>
+      <tr class="flag"><td>Data Processing / IT</td><td>72,000</td><td>72,000</td><td>72,000</td><td>232,000</td><td>550,000</td><td>155,000</td><td>155,000</td></tr>
+      <tr><td>Sheriff</td><td>1,914,446</td><td>1,969,523</td><td>2,367,998</td><td>2,493,261</td><td>2,930,612</td><td>3,106,599</td><td>3,106,599</td></tr>
+      <tr><td>Jail / Detention</td><td>1,877,013</td><td>2,036,902</td><td>2,142,536</td><td>2,256,201</td><td>2,163,842</td><td>2,405,547</td><td>2,405,547</td></tr>
+      <tr><td>Dispatch / 911</td><td>377,829</td><td>449,774</td><td>554,410</td><td>607,440</td><td>604,375</td><td>655,680</td><td>655,680</td></tr>
+      <tr><td>Emergency Management</td><td>154,107</td><td>168,043</td><td>189,978</td><td>209,184</td><td>201,377</td><td>223,082</td><td>223,082</td></tr>
+      <tr><td>Inspections</td><td>218,496</td><td>212,109</td><td>275,000</td><td>260,629</td><td>272,757</td><td>299,971</td><td>299,971</td></tr>
+      <tr><td>Rescue Squad / EMS</td><td>673,000</td><td>873,000</td><td>1,060,000</td><td>1,200,000</td><td>1,350,000</td><td>1,397,250</td><td>1,300,000</td></tr>
+      <tr><td>Animal Control</td><td>101,679</td><td>136,271</td><td>147,573</td><td>141,691</td><td>169,313</td><td>188,750</td><td>188,750</td></tr>
+      <tr><td>Recycling</td><td>329,858</td><td>393,129</td><td>404,293</td><td>395,268</td><td>365,087</td><td>280,829</td><td>280,829</td></tr>
+      <tr><td>Planning Dept</td><td>60,892</td><td>61,822</td><td>595,210</td><td>95,918</td><td>101,453</td><td>112,503</td><td>112,503</td></tr>
+      <tr><td>Senior Center</td><td>238,354</td><td>222,799</td><td>235,293</td><td>273,778</td><td>300,835</td><td>329,736</td><td>329,736</td></tr>
+      <tr><td>Cooperative Extension</td><td>119,942</td><td>121,635</td><td>124,115</td><td>130,509</td><td>135,634</td><td>135,810</td><td>135,810</td></tr>
+      <tr><td>Public Buildings</td><td>547,965</td><td>605,336</td><td>712,173</td><td>732,472</td><td>640,216</td><td>625,832</td><td>625,832</td></tr>
+      <tr><td>Health Department</td><td>831,899</td><td>778,422</td><td>329,540</td><td>1,149,895</td><td>1,031,965</td><td>1,207,763</td><td>1,207,763</td></tr>
+      <tr><td>Social Services (DSS)</td><td>2,492,785</td><td>2,531,253</td><td>2,640,908</td><td>2,824,380</td><td>2,583,591</td><td>2,890,319</td><td>2,890,319</td></tr>
+      <tr><td>Veterans Services</td><td>20,795</td><td>20,955</td><td>21,859</td><td>23,065</td><td>24,442</td><td>24,598</td><td>24,598</td></tr>
+      <tr><td>Board of Education (current+capital)</td><td>4,238,414</td><td>4,375,000</td><td>4,375,000</td><td>4,720,000</td><td>4,914,400</td><td>5,047,586</td><td>5,190,000</td></tr>
+      <tr><td>Community College</td><td>711,297</td><td>820,600</td><td>716,151</td><td>769,912</td><td>802,177</td><td>905,787</td><td>860,000</td></tr>
+      <tr><td>Regional Library</td><td>250,000</td><td>334,950</td><td>274,950</td><td>293,000</td><td>312,520</td><td>323,458</td><td>370,000</td></tr>
+      <tr><td>Recreation</td><td>367,942</td><td>354,776</td><td>376,269</td><td>410,550</td><td>410,550</td><td>388,108</td><td>388,108</td></tr>
+      <tr><td>Debt Service — school</td><td>329,045</td><td>316,809</td><td>304,521</td><td>146,848</td><td>0</td><td>100,000</td><td>393,382</td></tr>
+      <tr class="total"><td>TOTAL GENERAL FUND</td><td>19,897,135</td><td>20,890,170</td><td>22,806,413</td><td>23,882,107</td><td>24,627,767</td><td>25,795,429</td><td>26,976,604</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Smaller health-dept program codes and human-services sub-lines roll into the totals; pull the source PDF for full granularity. The FY21-22 Health dip and FY22-23 jump reflect COVID-grant accounting (see below). Debt service climbs sharply into FY26-27 as the new-school loan kicks in.</p>
+</section>
+
+<section>
+  <div class="kicker">Growth leads</div>
+  <h2>Departments that grew &gt;40% (FY2019-20 → FY2025-26)</h2>
+  <div class="scroll"><table style="min-width:420px">
+    <thead><tr><th>Department</th><th>FY19-20</th><th>FY25-26</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>Data Processing / IT</td><td>72,000</td><td>155,000</td><td class="up">+115%</td></tr>
+      <tr><td>Rescue Squad / EMS</td><td>673,000</td><td>1,397,250</td><td class="up">+108%</td></tr>
+      <tr><td>Medical Examiner</td><td>13,000</td><td>25,000</td><td class="up">+92%</td></tr>
+      <tr><td>Animal Control</td><td>101,679</td><td>188,750</td><td class="up">+86%</td></tr>
+      <tr><td>Planning Dept</td><td>60,892</td><td>112,503</td><td class="up">+85%</td></tr>
+      <tr><td>Dispatch / 911</td><td>377,829</td><td>655,680</td><td class="up">+74%</td></tr>
+      <tr><td>Governing Body</td><td>489,985</td><td>848,601</td><td class="up">+73%</td></tr>
+      <tr><td>Personnel / HR</td><td>154,467</td><td>257,096</td><td class="up">+66%</td></tr>
+      <tr><td>Sheriff</td><td>1,914,446</td><td>3,106,599</td><td class="up">+62%</td></tr>
+      <tr><td>Health Department</td><td>831,899</td><td>1,207,763</td><td class="up">+45%</td></tr>
+      <tr><td>Emergency Management</td><td>154,107</td><td>223,082</td><td class="up">+45%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">High growth isn't proof of waste — but each of these deserves a "why?" Pull the line-item detail and ask what drove the jump (positions, contracts, one-time capital).</p>
+</section>
+
+<section>
+  <div class="kicker">The COVID-money question</div>
+  <h2>Where the ARPA / federal pandemic money went</h2>
+  <p class="lead">There's no hidden "COVID department" still running on COVID money — federal recovery (SLFRF) spending fell to just <strong>$65,804 by FY2025</strong>. The subtler story: ARPA "revenue replacement" paid <em>ordinary</em> salaries during the grant years, and ~$1.9M was banked as fund balance now being drawn down. The operating base grew on temporary money that's now gone.</p>
+  <div class="scroll"><table style="min-width:420px">
+    <thead><tr><th>ARPA-paid item</th><th>Amount</th><th>Year</th></tr></thead>
+    <tbody>
+      <tr class="flag"><td>Governing Body — "ARPA Special Programs"</td><td>2,471,876</td><td>FY22-23</td></tr>
+      <tr><td>Sheriff — ARPA salaries &amp; benefits</td><td>654,503</td><td>FY23-24</td></tr>
+      <tr><td>Jail — ARPA salaries &amp; benefits</td><td>530,516</td><td>FY23-24</td></tr>
+      <tr><td>Dispatch — ARPA salaries &amp; benefits</td><td>225,762</td><td>FY23-24</td></tr>
+      <tr><td>Finance — ARPA salaries &amp; benefits</td><td>164,188</td><td>FY23-24</td></tr>
+      <tr><td>Federal SLFRF spend (wound down)</td><td>65,804</td><td>FY2025</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><strong>The mechanism to watch:</strong> when federal dollars pay this year's salaries, local tax dollars are freed up — letting headcount and pay scales grow. When the federal money ends (it has), those recurring costs fall back on the property-tax levy. Tracing which positions were ARPA-seeded and are now locally funded is a top investigation lead.</div>
+  <p class="note">COVID-era health programs (vaccination clinics, ELC detection, school-nurse grants, pandemic recovery) appear FY21-22, peak FY22-23, and are essentially gone by FY24-25. Detail in source PDFs.</p>
+</section>
+
+<section>
+  <div class="kicker">Open investigation</div>
+  <h2>Areas under investigation <span class="wip">work in progress</span></h2>
+  <p class="lead">The leads below are where the digging continues. Have a document, a number, or local knowledge? Send it via <a href="get-involved.html">Get Involved</a>.</p>
+  <ul class="clean">
+    <li><strong>The full $8.4M fund-balance drawdown.</strong> The FY2026-27 proposal reportedly taps nearly the entire available reserve. Compare <em>appropriated</em> vs. <em>actually spent</em> fund balance each year — does the county routinely budget a draw it never uses (manufacturing a sense of "need")?</li>
+    <li><strong>IT (+115%), Dispatch (+74%), Sheriff (+62%).</strong> Pull contracts and the position/pay plan. Which jumps are software/vendor contracts vs. ARPA-seeded positions now on local money?</li>
+    <li><strong>Governing Body (+73%) &amp; the $2.47M "ARPA Special Programs."</strong> Exactly what did this buy?</li>
+    <li><strong>The jail economics.</strong> Jail spending rose to $2.4M while federal-inmate revenue fell ($1.3M→$1.1M). Is the jail now a net cost rather than the revenue center it was sold as?</li>
+    <li><strong>New debt (+51.76%, +$4.35M):</strong> the $3.7M school-construction loan, the Kershaw water plant, and a Sheriff Training/EOC building. Bid process? Cost vs. estimate? Contractor connections?</li>
+    <li><strong>Per-capita comparison vs. efficient peer counties</strong> (Pamlico GF ≈ $2,060/resident). Run the NC Treasurer/LGC benchmarking tool against similar small counties.</li>
+    <li><strong>Rescue Squad (+108%).</strong> Pull the nonprofit's financials — is funding proportionate to call volume?</li>
+  </ul>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+  <p><strong>Sources:</strong> Pamlico County adopted budget line-item reports FY2019-20 → FY2025-26 and the FY2025 audit — all linked on the <a href="documents.html">Documents</a> page. Raw parcel data: <a href="data/pamlico-parcels-2026.csv" download>full county parcel file (CSV, 8.4 MB)</a>. Figures transcribed from the county's Tyler/Munis reports; verify anything load-bearing against the source PDFs. Independent citizen project.</p>
+  <p><a href="index.html">← Back to the full report</a></p>
+</div></footer>
+</body>
+</html>

@@ -67,6 +67,19 @@
   .foot a{color:var(--navy)}
   .share{margin-top:14px}
   .share button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:700;font-size:14px}
+  .lookup-wrap{margin-bottom:18px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+  #lookup{width:100%;font-size:16px;padding:12px 14px;border:2px solid var(--line);border-radius:11px;color:var(--ink)}
+  #lookup:focus{outline:none;border-color:var(--navy)}
+  #lookupResults{margin-top:6px;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:none}
+  #lookupResults .r{padding:9px 12px;cursor:pointer;font-size:14px;border-bottom:1px solid var(--line)}
+  #lookupResults .r:last-child{border-bottom:none}
+  #lookupResults .r:hover{background:#eef5f9}
+  #lookupResults .r .a{font-weight:700}
+  #lookupResults .r .o{color:var(--muted);font-size:12.5px}
+  #lookupResults .r .v{float:right;font-weight:700;color:var(--navy)}
+  #lookupSel{margin-top:8px;font-size:13px;color:var(--muted)}
+  .lookup-links{font-size:13px;color:var(--muted);margin-top:8px}
+  .lookup-links a{color:var(--navy)}
 </style>
 </head>
 <body>
@@ -78,6 +91,13 @@
 
 <main class="wrap">
   <div class="card">
+    <div class="lookup-wrap">
+      <label class="sublabel" for="lookup" style="display:block;margin-bottom:6px">🔎 Look up your property (optional — auto-fills your 2026 value)</label>
+      <input id="lookup" type="text" placeholder="Type your street address or owner name…" autocomplete="off">
+      <div id="lookupResults"></div>
+      <div id="lookupSel"></div>
+      <div class="lookup-links">Or look it up at the county: <a href="https://webapp.agdmaps.com/nc/pamlico/" target="_blank" rel="noopener">County GIS / parcel map</a> · <a href="https://pamlicocounty.org/online_services/index.php" target="_blank" rel="noopener">Property record cards</a> · <a href="https://vdsinc.com/bill-lookup/?instance-id=pamlico-tax" target="_blank" rel="noopener">Tax bills</a>. Your <strong>prior</strong> value is on the property card (labeled "PRIOR YEAR") or your 2025 tax bill.</div>
+    </div>
     <div class="vgrid">
       <div>
         <div class="sublabel">PRIOR assessed value (before 2026)</div>
@@ -96,7 +116,7 @@
       <label style="margin:0">NEW county tax rate</label>
       <div class="rateval"><span id="ratec">52.5</span>¢ <small>per $100 · <span id="rated">0.00525</span></small></div>
     </div>
-    <input id="rate" type="range" min="30" max="75" step="0.5" value="43.5">
+    <input id="rate" type="range" min="30" max="75" step="0.5" value="52.5">
     <div class="ticks"><span>30¢</span><span>neutral 43.5¢</span><span>proposed 52.5¢</span><span>old 64.5¢</span><span>75¢</span></div>
 
     <div class="snaps">
@@ -200,6 +220,48 @@ $("shareBtn").addEventListener("click",async()=>{
   if(h.get("o")) $("oldval").value=Number(h.get("o")).toLocaleString();
   if(h.get("n")) $("newval").value=Number(h.get("n")).toLocaleString();
   if(h.get("r")) $("rate").value=h.get("r");
+})();
+
+// ---- Property lookup / autofill (lazy-loads data/parcels.js on first focus) ----
+(function(){
+  const box=$("lookup"), results=$("lookupResults"), sel=$("lookupSel");
+  if(!box) return;
+  let loaded=false, loading=false, t=null;
+  function ensure(cb){
+    if(loaded) return cb();
+    if(loading) return;
+    loading=true; sel.textContent="Loading property data…";
+    const s=document.createElement("script"); s.src="data/parcels.js";
+    s.onload=()=>{loaded=true;loading=false;sel.textContent="";cb();};
+    s.onerror=()=>{loading=false;sel.textContent="Couldn't load property data — use the county links above.";};
+    document.body.appendChild(s);
+  }
+  function search(){
+    const q=box.value.trim().toUpperCase();
+    if(q.length<3){results.style.display="none";return;}
+    if(!window.PARCELS) return;
+    const out=[];
+    for(let i=0;i<window.PARCELS.length && out.length<8;i++){
+      const p=window.PARCELS[i];
+      if(p[0].indexOf(q)>-1 || (p[3]&&p[3].indexOf(q)>-1)) out.push(p);
+    }
+    if(!out.length){results.innerHTML='<div class="r" style="cursor:default">No match — check spelling or use the county links above.</div>';results.style.display="block";return;}
+    results.innerHTML=out.map((p,i)=>'<div class="r" data-i="'+i+'"><span class="v">$'+p[1].toLocaleString()+'</span><span class="a">'+p[0]+'</span><br><span class="o">'+(p[3]||'')+' · '+p[2]+'</span></div>').join("");
+    results.style.display="block"; results._set=out;
+  }
+  box.addEventListener("focus",()=>ensure(search));
+  box.addEventListener("input",()=>{clearTimeout(t);t=setTimeout(()=>ensure(search),150);});
+  results.addEventListener("click",e=>{
+    const row=e.target.closest(".r"); if(!row||row.dataset.i===undefined||row.dataset.i==="") return;
+    const p=results._set[+row.dataset.i];
+    const estPrior=Math.round(p[1]*NEUTRAL/OLD_RATE);
+    $("newval").value=p[1].toLocaleString();
+    $("oldval").value=estPrior.toLocaleString();
+    box.value=p[0]; results.style.display="none";
+    const card="https://dl.agd.cc/prc/nc/pamlico/"+encodeURIComponent(p[2])+".pdf";
+    sel.innerHTML='✓ Your 2026 value <strong>$'+p[1].toLocaleString()+'</strong> is filled in. We <em>estimated</em> your prior value at <strong>$'+estPrior.toLocaleString()+'</strong> (assuming the county-average increase, so "Before" ≈ the revenue-neutral bill). <strong>For your exact numbers</strong>, open your <a href="'+card+'" target="_blank" rel="noopener">property card ('+p[2]+')</a> and replace the prior value with its <strong>PRIOR YEAR</strong> figure — if your value rose more than average, your real increase is even bigger.';
+    render();
+  });
 })();
 render();
 </script>

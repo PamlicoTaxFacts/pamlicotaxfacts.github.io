@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detailed Budget Breakdown · Pamlico Tax Facts</title>
-<meta name="description" content="Year-by-year Pamlico County budget detail FY2019-20 to FY2025-26: revenue by category, spending by department, COVID/ARPA money, and where spending grew fastest.">
+<meta name="description" content="Year-by-year Pamlico County budget detail FY2016-17 to FY2025-26: revenue by category, spending by department, COVID/ARPA money, and where spending grew fastest.">
 <meta property="og:title" content="Pamlico County Budget — Detailed Breakdown">
 <meta property="og:description" content="The working deep-dive: revenue and spending line items year by year, the COVID/ARPA money, and growth/bloat leads.">
 <style>
@@ -62,96 +62,48 @@
   <div class="kicker">The big picture</div>
   <h2>General Fund grew ~30% in six years; population stayed flat</h2>
   <p class="lead">Adopted General Fund spending rose from <strong>$19.9M (FY2019-20)</strong> to <strong>~$26.98M (FY2025-26)</strong> — about <strong>+29.6%</strong> — while county population held near <strong>12,300</strong>. Property tax (now &gt;half of revenue) and a recurring <strong>fund-balance draw</strong> (~$2M/yr) carried the gap. The tables below break that down; the question is which increases are justified and which are bloat.</p>
-  <div class="callout">All figures are from the county's adopted budget line-item reports (Tyler/Munis), FY2019-20 → FY2025-26. Column conventions differ slightly by year; "requested" columns (FY25-26) are pre-adoption. Cross-check anything important against the source PDFs on the <a href="documents.html">Documents</a> page.</div>
+  <div class="callout">All figures are from the county's adopted budget line-item reports (Tyler/Munis), FY2016-17 → FY2025-26. Column conventions differ slightly by year; the three earliest years (FY16-17/17-18/18-19) use the adopted ordinance / RECOMMEND columns, and their <em>detailed</em> revenue sub-lines (state/federal/jail/investment/permits) are held at FY2019-20 levels where not separately reported. "Requested" columns (FY25-26 spending) are pre-adoption estimates. Cross-check anything important against the source PDFs on the <a href="documents.html">Documents</a> page.</div>
+</section>
+
+<section>
+  <div class="kicker">The headline</div>
+  <h2>Property tax: gentle climb, then the FY2026-27 jump</h2>
+  <p class="lead">Property-tax revenue rose modestly for years — roughly tracking inflation — and the county is even <em>lowering the rate</em> from 64.5¢ to a proposed 52.5¢. But the 2026 revaluation sharply raised valuations — the revenue-neutral rate (43.5¢ vs the old 64.5¢) implies the tax base grew by <strong>roughly half on average</strong> (many homes more) — so that "lower" rate collects far MORE. The green bar is the revenue-neutral rate (43.5¢, which holds revenue flat); the red bar is the proposed 52.5¢ — a <strong>big jump, not a normalization</strong>.</p>
+  <div class="toggles">
+    <button data-wf="nom" class="on">Nominal $</button>
+    <button data-wf="real">Inflation-adjusted (2026 $)</button>
+  </div>
+  <div class="card"><div class="chart-box"><canvas id="cWindfall"></canvas></div></div>
+  <p class="note">Toggle <strong>Inflation-adjusted</strong> and you'll see real property tax has been roughly flat (even dipping) for years — which makes the proposed FY2026-27 jump stand out even more. County property-tax revenue ($M). FY2026-27 are estimates: revenue-neutral 43.5¢ ≈ holds FY2025-26 revenue; proposed 52.5¢ ≈ +21% (~$2.9M more) on the revalued base. Rate history: 62.5¢ (2020-23) → 64.5¢ (2024-25) → proposed 52.5¢ on revalued property. <a href="documents.html">Sources</a>.</p>
 </section>
 
 <section>
   <div class="kicker">Spending — visual</div>
   <h2>Where the money goes, by year</h2>
-  <p class="lead">General Fund money by category. <strong>Show</strong> spending or revenue; <strong>adjust</strong> per resident and/or for inflation; switch the <strong>view</strong> to dollar change vs 2019 (up = grew, down = cut — the up/down bars balance when the total is flat). Click legend items to isolate categories.</p>
+  <p class="lead">General Fund money by category. <strong>Show</strong> spending or revenue; set <strong>Level</strong> from major groups down to every department/line; <strong>adjust</strong> per resident and/or for inflation; switch the <strong>view</strong> to dollar change vs 2019 (up = grew, down = cut — bars balance when the total is flat). Click legend items to isolate categories.</p>
   <div class="toggles">
     <span class="tlab">Show:</span>
     <button data-src="exp" class="on">Spending</button>
     <button data-src="rev">Revenue</button>
     <span class="tsep"></span>
     <span class="tlab">Adjust:</span>
-    <button data-tg="percap">Per&nbsp;resident</button>
+    <button data-tg="percap" class="on">Per&nbsp;resident</button>
     <button data-tg="infl" class="on">Inflation-adjusted</button>
     <span class="tsep"></span>
     <span class="tlab">View:</span>
-    <button data-view="dollars" class="on">Dollars</button>
-    <button data-view="index">$ change vs 2019</button>
-    <span style="flex:1 1 auto"></span>
+    <button data-view="dollars">Dollars</button>
+    <button data-view="index" class="on">$ change vs 2019</button>
+  </div>
+  <div class="toggles">
+    <button id="detailBtn">▾ Detailed view</button>
+    <span class="tsep"></span>
+    <button id="resetBtn">↺ Reset</button>
     <button id="expTblBtn">▦ Table</button>
   </div>
   <div class="card"><div class="chart-box"><canvas id="cExp"></canvas></div></div>
   <div id="expTableWrap" class="scroll" style="display:none"></div>
-  <p class="note"><strong>Click a category in the legend to show/hide it.</strong> Covers <strong>FY2019-20 → FY2024-25</strong> — years with clean adopted department detail; FY2025-26 &amp; FY2026-27 added once verified. Per-resident uses ≈ flat population (2020 Census 12,276); inflation-adjusted uses CPI-U to constant dollars — both approximate. Exact figures via ▦ Table and the <a href="documents.html">source budgets</a>.</p>
-  <div class="callout warn"><strong>Scope &amp; honesty note:</strong> this is the <strong>General Fund</strong> (the ~$27M operating budget). Switch <strong>Show → Revenue</strong> to see the <strong>fund-balance "savings" draw</strong> (amber) the county taps to balance each year. Other funds sit outside this view — Water/enterprise (~$3.5M), capital projects (the $10M+ Kershaw plant), and grant funds — and are being added. In the <strong>Revenue</strong> view, the one-time <strong>COVID/ARPA relief</strong> is now broken out (red) — watch its <strong>FY2022-23 spike</strong>; on the <em>spending</em> side that money was folded into regular department salaries (see the COVID/ARPA tracker below).</div>
-</section>
-
-<section>
-  <div class="kicker">Revenue</div>
-  <h2>General Fund revenue by category</h2>
-  <div class="scroll"><table>
-    <thead><tr><th>Category ($)</th><th>FY19-20</th><th>FY20-21</th><th>FY21-22</th><th>FY22-23</th><th>FY23-24</th><th>FY24-25</th><th>FY25-26</th></tr></thead>
-    <tbody>
-      <tr class="total"><td>GENERAL FUND TOTAL</td><td>19,897,135</td><td>20,890,170</td><td>22,806,413</td><td>23,882,107</td><td>24,627,767</td><td>25,795,429</td><td>26,976,604</td></tr>
-      <tr><td>Ad valorem (property) — total</td><td>10,820,000</td><td>11,682,871</td><td>11,986,698</td><td>12,359,000</td><td>12,489,000</td><td>12,914,213</td><td>13,948,000</td></tr>
-      <tr class="sub"><td>real &amp; personal property</td><td>9,530,000</td><td>10,432,871</td><td>10,441,698</td><td>10,745,000</td><td>10,850,000</td><td>11,218,213</td><td>12,290,000</td></tr>
-      <tr class="sub"><td>motor vehicles (DMV)</td><td>835,000</td><td>835,000</td><td>1,000,000</td><td>1,065,000</td><td>1,120,000</td><td>1,503,000</td><td>1,503,000</td></tr>
-      <tr><td>Sales tax</td><td>2,748,000</td><td>2,300,000</td><td>3,411,000</td><td>3,897,000</td><td>4,373,000</td><td>4,580,000</td><td>4,850,000</td></tr>
-      <tr><td>State intergov — DSS</td><td>1,811,159</td><td>1,900,011</td><td>2,065,011</td><td>2,163,736</td><td>1,973,017</td><td>1,799,111</td><td>1,805,011</td></tr>
-      <tr><td>State intergov — Health</td><td>394,320</td><td>405,947</td><td>384,569</td><td>340,844</td><td>302,861</td><td>631,577</td><td>535,222</td></tr>
-      <tr><td>Federal intergov — DSS</td><td>180,086</td><td>170,160</td><td>208,160</td><td>173,160</td><td>160,315</td><td>153,410</td><td>122,410</td></tr>
-      <tr><td>Jail / federal-inmate fees</td><td>1,125,000</td><td>1,235,000</td><td>1,250,000</td><td>1,400,000</td><td>1,020,000</td><td>1,300,000</td><td>1,100,000</td></tr>
-      <tr><td>Investment earnings</td><td>125,000</td><td>25,000</td><td>2,000</td><td>4,000</td><td>400,000</td><td>500,000</td><td>480,000</td></tr>
-      <tr><td>Permits &amp; fees</td><td>249,600</td><td>259,400</td><td>341,300</td><td>353,800</td><td>360,800</td><td>420,250</td><td>510,700</td></tr>
-      <tr class="flag"><td>Fund balance appropriated (savings)</td><td>1,398,764</td><td>1,901,736</td><td>1,639,334</td><td>2,099,815</td><td>2,388,759</td><td>1,580,600</td><td>2,131,197</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note">Sales tax grew +77% over the period (the biggest organic gain). The county balances the budget every year by spending fund balance (savings) — flagged row.</p>
-</section>
-
-<section>
-  <div class="kicker">Spending</div>
-  <h2>General Fund expenditures by department</h2>
-  <p class="note">FY25-26 column = last cleanly department-allocated adopted figures; see <a href="documents.html">source PDFs</a> for the in-progress year.</p>
-  <div class="scroll"><table>
-    <thead><tr><th>Department ($)</th><th>FY19-20</th><th>FY20-21</th><th>FY21-22</th><th>FY22-23</th><th>FY23-24</th><th>FY24-25</th><th>FY25-26</th></tr></thead>
-    <tbody>
-      <tr><td>Governing Body</td><td>489,985</td><td>508,300</td><td>535,000</td><td>558,400</td><td>712,000</td><td>848,601</td><td>848,601</td></tr>
-      <tr><td>County Manager</td><td>183,770</td><td>188,244</td><td>203,007</td><td>232,735</td><td>242,279</td><td>253,744</td><td>253,744</td></tr>
-      <tr><td>Personnel / HR</td><td>154,467</td><td>181,954</td><td>185,766</td><td>237,814</td><td>412,693</td><td>257,096</td><td>257,096</td></tr>
-      <tr><td>Finance</td><td>371,071</td><td>379,192</td><td>373,381</td><td>405,689</td><td>423,730</td><td>497,845</td><td>497,845</td></tr>
-      <tr><td>Tax Listing</td><td>537,008</td><td>567,236</td><td>570,800</td><td>604,006</td><td>600,567</td><td>637,473</td><td>637,473</td></tr>
-      <tr><td>Board of Elections</td><td>313,348</td><td>181,705</td><td>203,175</td><td>214,754</td><td>213,666</td><td>253,165</td><td>253,165</td></tr>
-      <tr><td>Register of Deeds</td><td>153,473</td><td>155,031</td><td>162,657</td><td>185,021</td><td>184,142</td><td>222,450</td><td>222,450</td></tr>
-      <tr><td>Data Processing / IT</td><td>72,000</td><td>72,000</td><td>72,000</td><td>232,000</td><td>550,000</td><td>155,000</td><td>155,000</td></tr>
-      <tr><td>Sheriff</td><td>1,914,446</td><td>1,969,523</td><td>2,367,998</td><td>2,493,261</td><td>2,930,612</td><td>3,106,599</td><td>3,106,599</td></tr>
-      <tr><td>Jail / Detention</td><td>1,877,013</td><td>2,036,902</td><td>2,142,536</td><td>2,256,201</td><td>2,163,842</td><td>2,405,547</td><td>2,405,547</td></tr>
-      <tr><td>Dispatch / 911</td><td>377,829</td><td>449,774</td><td>554,410</td><td>607,440</td><td>604,375</td><td>655,680</td><td>655,680</td></tr>
-      <tr><td>Emergency Management</td><td>154,107</td><td>168,043</td><td>189,978</td><td>209,184</td><td>201,377</td><td>223,082</td><td>223,082</td></tr>
-      <tr><td>Inspections</td><td>218,496</td><td>212,109</td><td>275,000</td><td>260,629</td><td>272,757</td><td>299,971</td><td>299,971</td></tr>
-      <tr><td>Rescue Squad / EMS</td><td>673,000</td><td>873,000</td><td>1,060,000</td><td>1,200,000</td><td>1,350,000</td><td>1,397,250</td><td>1,300,000</td></tr>
-      <tr><td>Animal Control</td><td>101,679</td><td>136,271</td><td>147,573</td><td>141,691</td><td>169,313</td><td>188,750</td><td>188,750</td></tr>
-      <tr><td>Recycling</td><td>329,858</td><td>393,129</td><td>404,293</td><td>395,268</td><td>365,087</td><td>280,829</td><td>280,829</td></tr>
-      <tr><td>Planning Dept</td><td>60,892</td><td>61,822</td><td>595,210</td><td>95,918</td><td>101,453</td><td>112,503</td><td>112,503</td></tr>
-      <tr><td>Senior Center</td><td>238,354</td><td>222,799</td><td>235,293</td><td>273,778</td><td>300,835</td><td>329,736</td><td>329,736</td></tr>
-      <tr><td>Cooperative Extension</td><td>119,942</td><td>121,635</td><td>124,115</td><td>130,509</td><td>135,634</td><td>135,810</td><td>135,810</td></tr>
-      <tr><td>Public Buildings</td><td>547,965</td><td>605,336</td><td>712,173</td><td>732,472</td><td>640,216</td><td>625,832</td><td>625,832</td></tr>
-      <tr><td>Health Department</td><td>831,899</td><td>778,422</td><td>329,540</td><td>1,149,895</td><td>1,031,965</td><td>1,207,763</td><td>1,207,763</td></tr>
-      <tr><td>Social Services (DSS)</td><td>2,492,785</td><td>2,531,253</td><td>2,640,908</td><td>2,824,380</td><td>2,583,591</td><td>2,890,319</td><td>2,890,319</td></tr>
-      <tr><td>Veterans Services</td><td>20,795</td><td>20,955</td><td>21,859</td><td>23,065</td><td>24,442</td><td>24,598</td><td>24,598</td></tr>
-      <tr><td>Board of Education (current+capital)</td><td>4,238,414</td><td>4,375,000</td><td>4,375,000</td><td>4,720,000</td><td>4,914,400</td><td>5,047,586</td><td>5,190,000</td></tr>
-      <tr><td>Community College</td><td>711,297</td><td>820,600</td><td>716,151</td><td>769,912</td><td>802,177</td><td>905,787</td><td>860,000</td></tr>
-      <tr><td>Regional Library</td><td>250,000</td><td>334,950</td><td>274,950</td><td>293,000</td><td>312,520</td><td>323,458</td><td>370,000</td></tr>
-      <tr><td>Recreation</td><td>367,942</td><td>354,776</td><td>376,269</td><td>410,550</td><td>410,550</td><td>388,108</td><td>388,108</td></tr>
-      <tr><td>Debt Service — school</td><td>329,045</td><td>316,809</td><td>304,521</td><td>146,848</td><td>0</td><td>100,000</td><td>393,382</td></tr>
-      <tr class="total"><td>TOTAL GENERAL FUND</td><td>19,897,135</td><td>20,890,170</td><td>22,806,413</td><td>23,882,107</td><td>24,627,767</td><td>25,795,429</td><td>26,976,604</td></tr>
-    </tbody>
-  </table></div>
-  <p class="note">Smaller health-dept program codes and human-services sub-lines roll into the totals; pull the source PDF for full granularity. The FY21-22 Health dip and FY22-23 jump reflect COVID-grant accounting (see below). Debt service climbs sharply into FY26-27 as the new-school loan kicks in.</p>
+  <p class="note"><strong>Level → Detailed</strong> breaks the majors into every department / revenue line — then <strong>click legend items to isolate</strong> the ones you're investigating (selections persist; ↺ Reset clears them). Best paired with <strong>$ change vs 2019</strong> to see which departments actually grew. Covers <strong>FY2016-17 → FY2025-26</strong> — and with <strong>Per resident + Inflation-adjusted</strong> on (the default), the shape is unmistakable: spending was <strong>flat-to-falling from FY2016-17 through FY2019-20</strong> (the county was holding the line), then <strong>blew up in FY2022-23 — after the COVID emergency had passed</strong> — and never came back down. The <strong>FY2025-26 spending bars are faded</strong> because they're a provisional estimate (known items from the budget message + the rest scaled to the adopted total) — FY2025-26 <em>revenue</em> is confirmed, and clean dept line-items are pending. Per-resident ≈ flat population (2020 Census 12,276); inflation-adjusted uses CPI-U to constant dollars — both approximate. Exact figures via ▦ Table and the <a href="documents.html">source budgets</a>.</p>
+  <div class="callout warn"><strong>Scope &amp; honesty note:</strong> this is the <strong>General Fund</strong> (the ~$27M operating budget). Switch <strong>Show → Revenue</strong> to see the <strong>fund-balance "savings" draw</strong> (amber) the county taps to balance each year. Other funds sit outside this view — Water/enterprise (~$3.5M), capital projects (the $10M+ Kershaw plant), and grant funds — and are being added. On <strong>Spending</strong>, the one-time COVID/ARPA money is split into the categories it funded — <strong>ARPA → Public Safety</strong> (~$1.9M, FY22-23), <strong>ARPA → General Gov't</strong> (~$0.55M), and Health/CARES — all in red, on top of the structural budget (FY22-23 totals rise ~$2.9M, nothing cannibalized). On <strong>Revenue</strong> it's the one-time inflow. The telling part (try <strong>$ change vs 2019</strong>): the categories ARPA propped up <em>never dropped back</em> after the federal money vanished. Other funds (Water ~$3.5M, the $10M+ Kershaw plant, grants) sit outside this General-Fund view.</div>
 </section>
 
 <section>
@@ -181,7 +133,7 @@
   <h2>Where the ARPA / federal pandemic money went</h2>
   <p class="lead">The pandemic money rose from $0 to a roughly <strong>$2.9M peak in FY2022-23</strong>, then fell back to ~$0 — <strong>no standalone "COVID program" survived</strong>. The subtler move: the county took its <strong>~$2.47M of ARPA as "revenue replacement"</strong> and spent it covering <strong>ordinary department salaries</strong> for one year. That freed up an equal amount of <em>local</em> money, which was <strong>banked in fund balance</strong> — and is now being drawn down ~$2M/year. That parked savings is the through-line from COVID relief to today's "we need a windfall."</p>
   <div class="card"><div class="chart-box"><canvas id="cCovid"></canvas></div></div>
-  <p class="note">CARES-era public-health grants peaked FY2021-22; the one-time ARPA transfer drove the FY2022-23 spike; essentially closed out by FY2025. Per-year totals are estimates from the budget reports + FY2025 audit.</p>
+  <p class="note"><strong>Watch the blue line against the bars:</strong> federal COVID money vanishes after FY2022-23, but the fund-balance "savings" draw stays elevated and <strong>peaks in FY2023-24 — the year after</strong> (red dot). ARPA didn't cut anyone's taxes (property &amp; sales held steady); it was <em>banked</em>, and the structural savings-draw it papered over kept right on going. CARES grants peaked FY2021-22; ARPA closed out by FY2025. Per-year totals are estimates from the budget reports + FY2025 audit.</p>
   <h3 style="font-size:17px;margin:20px 0 6px;font-weight:800">Where the FY2022-23 ARPA actually went: normal salaries</h3>
   <div class="card"><div class="chart-box" style="height:300px"><canvas id="cArpaDept"></canvas></div></div>
   <div class="callout warn"><strong>The mechanism:</strong> when federal dollars pay this year's salaries, local tax dollars are freed up — and here they were <strong>banked, not returned to taxpayers</strong>. When the ARPA ran out, the payroll stayed on the local levy and the banked savings began draining. <em>Which positions were ARPA-seeded and are now locally funded?</em> — a top investigation lead. (Base-pay shown; ARPA also covered OT, FICA, retirement &amp; insurance on top.)</div>
@@ -236,10 +188,42 @@
   </ul>
 </section>
 
+<section>
+  <div class="kicker">The Sheriff question</div>
+  <h2>Did doubling the Sheriff's budget make us safer?</h2>
+  <p class="lead">A fair question — and not a knock on the deputies; it's about the <strong>appropriation the commissioners set</strong>, not the work. The Sheriff's Office budget rose <strong>+72%</strong> (≈$1.8M → $3.1M) and the Detention Center <strong>+55%</strong> (≈$1.55M → $2.4M) since FY2016-17, while county population slowly <em>declined</em>. What did taxpayers get for it? Not a response to rising crime — there wasn't any. Reported offenses <strong>fell ~59% from their 2013 peak to a 15-year low in 2024.</strong> Whatever drove that decline (property crime has fallen regionally too), a <em>shrinking</em> crime count is not a justification for a budget that grew ~64%.</p>
+  <div class="card"><div class="chart-box"><canvas id="cSafety"></canvas></div>
+    <p class="note">Reported index offenses per year (blue bars) vs. the Sheriff + Jail/Detention adopted budget (red line, $M). Crime fell from a <strong>2013 peak of 358 offenses to 148 in 2024 — its lowest in the 15+ years of data — down ~59%</strong>, while Sheriff+Jail spending rose from ~$2.65M (FY2014-15) to ~$5.51M (FY2024-25), up ~110%. Crime: <a href="https://cde.ucr.cjis.gov/" target="_blank" rel="noopener">FBI Crime Data Explorer</a> (Pamlico County Sheriff's Office, ORI NC0690000), corroborated by NC SBI for 2018-24; 2017 omitted (partial reporting), 2006-07 had reporting gaps. Budget: county expense reports (FY2014-15 &amp; FY2015-16 from the posted historical budgets; FY2013-14 is not posted, so 2013 has no budget point), each fiscal year placed on its starting calendar year.</p>
+  </div>
+  <div class="scroll"><table style="min-width:420px">
+    <thead><tr><th>Reported offenses (Pamlico)</th><th>2023</th><th>2024</th></tr></thead>
+    <tbody>
+      <tr><td>Murder</td><td>1</td><td>0</td></tr>
+      <tr><td>Robbery</td><td>1</td><td>0</td></tr>
+      <tr><td>Aggravated assault</td><td>15</td><td>21</td></tr>
+      <tr><td>Burglary</td><td>44</td><td>40</td></tr>
+      <tr><td>Larceny / theft</td><td>97</td><td>73</td></tr>
+      <tr><td>Motor-vehicle theft</td><td>11</td><td>11</td></tr>
+      <tr class="total"><td>Total index offenses</td><td>~175</td><td>~146</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid2">
+    <div class="callout good"><strong>Low-crime, and falling:</strong> crime is overwhelmingly petty property/larceny; violent crime is rare — roughly <strong>0–1 murders and 0–1 robberies a year, all solved.</strong> Total index offenses dropped from <strong>358 (2013) to 148 (2024)</strong>, the lowest in the available record, and Pamlico's property-crime rate runs <strong>below</strong> the NC statewide average.</div>
+    <div class="callout warn"><strong>The mismatch:</strong> Sheriff + Jail spending rose <strong>~$2.2M (+64%)</strong> against a crime baseline that didn't worsen and a population that shrank. There is <strong>no crime trend that justifies the growth.</strong> The likely real drivers — staffing a near-full jail, wages/benefits, inflation — are budget choices, and belong in the line-item review, not behind a "public safety" headline.</div>
+  </div>
+  <div class="callout"><strong>So what did it cost per crime?</strong> Run it honestly. Sheriff + Jail spending rose from ~$2.65M (FY2014-15) to ~$5.51M (FY2024-25) — about <strong>+$2.86M a year (~110%)</strong> — while reported offenses fell from the 2013 peak of 358 to 148. Credit the budget for the whole ~210-crime drop and you get roughly <strong>$14,000 per crime avoided, per year.</strong> But you can't credit it: <strong>spending rose and crime fell together for a decade, and property crime fell statewide over the same span</strong> — so the decline isn't something the budget can claim. And it matters where the money went (chart below): <strong>~72% of the growth is salaries and benefits</strong>, operating costs barely moved, and part of the jail's growth is a federal-inmate housing contract — a revenue operation, not local crime-fighting. <strong>The verdict:</strong> a budget that doubled, a crime decline it can't take credit for, and no documented link between the two.</div>
+  <h3 style="font-size:17px;margin:20px 0 6px;font-weight:800">Where did the money go? People, not equipment.</h3>
+  <div class="card"><div class="chart-box"><canvas id="cSheriffComp"></canvas></div>
+    <p class="note">Sheriff's Office budget split into Personnel (salaries, overtime &amp; benefits), Operating (fuel, uniforms, supplies, contracts), Capital (vehicles/equipment) and lease debt, FY2015-16 → FY2024-25. <strong>Personnel drove ~72% of the growth</strong> ($1.13M → $2.52M); operating stayed nearly flat and capital is sporadic. The reports lump all sworn and civilian pay into single salary codes — so <strong>patrol-deputy vs. administrative headcount isn't in the budget;</strong> that split lives in the county's position/pay plan (a clean records request). FY2025-26 is omitted — the posted draft left personnel lines blank. Source: county Munis expense reports.</p>
+  </div>
+  <div class="callout"><strong>The jail is partly a business.</strong> The FY2025-26 budget message confirms the Detention Center (108 beds, ~105 average daily) houses <strong>40–60 federal inmates a day at ~$80 each — about $1.1M a year in revenue.</strong> So part of the jail's budget growth is a <em>revenue-generating boarding operation</em>, not local crime control, and its costs (inmate food, medical, staffing a near-full facility) rise with the contract. The question worth tracking: does the housing revenue still cover the cost as the operation grows? Source: FY2025-26 budget message.</div>
+  <p class="note"><strong>Honesty flags:</strong> for a county this small, a single incident swings the "rate" wildly — read multi-year trends, not any one year. Offense counts are from FBI/SBI-derived data (city-data.com); rate estimates (CrimeGrade/BestPlaces) are approximate — pull the exact county rate from the <a href="https://www.ncsbi.gov/Services/Crime-Statistics/Crime-in-North-Carolina-Annual-Summaries" target="_blank" rel="noopener">NC SBI annual summaries</a> before quoting a hard number. <strong>Sources:</strong> <a href="https://www.city-data.com/county/Pamlico_County-NC.html" target="_blank" rel="noopener">city-data</a> (offense counts), <a href="https://policescorecard.org/nc/sheriff/pamlico-county" target="_blank" rel="noopener">Police Scorecard</a> (jail population &amp; homicides), <a href="https://crimegrade.org/safest-places-in-pamlico-county-nc/" target="_blank" rel="noopener">CrimeGrade</a> &amp; <a href="https://www.bestplaces.net/crime/county/north_carolina/pamlico" target="_blank" rel="noopener">BestPlaces</a> (rate estimates), <a href="https://cde.ucr.cjis.gov/" target="_blank" rel="noopener">FBI Crime Data Explorer</a>.</p>
+</section>
+
 </main>
 
 <footer><div class="wrap">
-  <p><strong>Sources:</strong> Pamlico County adopted budget line-item reports FY2019-20 → FY2025-26 and the FY2025 audit — all linked on the <a href="documents.html">Documents</a> page. Raw parcel data: <a href="data/pamlico-parcels-2026.csv" download>full county parcel file (CSV, 8.4 MB)</a>. Figures transcribed from the county's Tyler/Munis reports; verify anything load-bearing against the source PDFs. Independent citizen project.</p>
+  <p><strong>Sources:</strong> Pamlico County adopted budget line-item reports FY2016-17 → FY2025-26 (the three earliest from the adopted FY2016-17 ordinance + Munis RECOMMEND columns) and the FY2025 audit — all linked on the <a href="documents.html">Documents</a> page. <strong>Crime &amp; safety:</strong> NC SBI <em>Crime in North Carolina</em>, FBI Crime Data Explorer, Police Scorecard, city-data.com (linked in the Sheriff section above). Raw parcel data: <a href="data/pamlico-parcels-2026.csv" download>full county parcel file (CSV, 8.4 MB)</a>. Figures transcribed from the county's Tyler/Munis reports; verify anything load-bearing against the source PDFs. Independent citizen project.</p>
   <p><a href="index.html">← Back to the full report</a></p>
 </div></footer>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -247,40 +231,59 @@
 <script>
 (function(){
   const B=window.BUDGET; if(!B||!window.Chart) return;
+  const PAL=["#2c6e91","#3f8fb0","#6aa8c4","#9ec3d6","#5b8aa6","#7d9aac","#a7bcc9","#34607d","#486f86","#8893a0","#d68910","#c0392b","#2e8b57","#6f5b9e","#b0884a","#5f9ea0","#4f7a93","#9a7b4f"];
+  const LY=B.years.length-1;
+  const dord=d=>Object.keys(d).sort((a,b)=>d[b][LY]-d[a][LY]);
   const SRC={
-    exp:{data:B.expCategories,noun:"Spending",
-      order:["Education","Public Safety & EMS","Human Services","General Government","Community & Debt","Other / smaller depts"],
-      colors:["#2c6e91","#3f8fb0","#6aa8c4","#9ec3d6","#8893a0","#c4ccd3"]},
-    rev:{data:B.revenue,noun:"Revenue",
-      order:["Property tax","Sales tax","Fund balance (savings)","COVID/ARPA relief (one-time)","Other revenue"],
-      colors:["#2c6e91","#3f8fb0","#d68910","#c0392b","#9ec3d6"]}
+    exp:{noun:"Spending",
+      major:{data:B.expCategories,order:["Education","Public Safety & EMS","Human Services","General Government","Community & Debt","Other / smaller depts","ARPA → Public Safety","ARPA → General Gov't","COVID/CARES → Health & other"],colors:["#2c6e91","#3f8fb0","#6aa8c4","#9ec3d6","#8893a0","#c4ccd3","#b03a2e","#d9694f","#d68910"]},
+      detail:{data:B.expDept,order:dord(B.expDept),colors:dord(B.expDept).map((_,i)=>PAL[i%PAL.length])}},
+    rev:{noun:"Revenue",
+      major:{data:B.revenue,order:["Property tax","Sales tax","Fund balance (savings)","Other revenue","COVID/ARPA (one-time)"],colors:["#2c6e91","#3f8fb0","#d68910","#9ec3d6","#c0392b"]},
+      detail:{data:B.revDetail,order:dord(B.revDetail),colors:dord(B.revDetail).map((_,i)=>PAL[i%PAL.length])}}
   };
-  let src="exp", perCap=false, infl=true, view="dollars";
-  function S(){ return SRC[src]; }
+  let src="exp", level="major", perCap=true, infl=true, view="index";
+  const hidden=new Set();   // category labels hidden via legend — persists across Show/Level/Adjust/View
+  function S(){ return SRC[src][level]; }
+  function noun(){ return SRC[src].noun; }
+  const stackMap={"ARPA → Public Safety":"Public Safety & EMS","ARPA → General Gov't":"General Government","COVID/CARES → Health & other":"Human Services"};
   function factor(i){ return (perCap?1/B.population[i]:1)*(infl?B.cpiBase/B.cpi[i]:1); }
+  const bIdx=Math.max(0,B.years.indexOf("FY19-20"));   // "$ change vs 2019" anchors to FY2019-20, not the first column
   function val(k,i){ const a=S().data[k];
-    if(view==="index"){ return Math.round(a[i]*factor(i) - a[0]*factor(0)); }
+    if(view==="index"){ return Math.round(a[i]*factor(i) - a[bIdx]*factor(bIdx)); }
     return Math.round(a[i]*factor(i));
   }
-  function ds(){ return S().order.map((k,ci)=>({label:k,data:B.years.map((_,i)=>val(k,i)),backgroundColor:S().colors[ci],borderWidth:0})); }
+  const estIdx=B.years.indexOf("FY25-26");
+  function fade(hex){const c=hex.replace('#','');return "rgba("+parseInt(c.substr(0,2),16)+","+parseInt(c.substr(2,2),16)+","+parseInt(c.substr(4,2),16)+",0.4)";}
+  function ds(){ return S().order.map((k,ci)=>{
+    const base=S().colors[ci];
+    const bg=(src==="exp"&&estIdx>=0)?B.years.map((_,i)=>i===estIdx?fade(base):base):base;
+    return {label:k,data:B.years.map((_,i)=>val(k,i)),backgroundColor:bg,borderWidth:0,hidden:hidden.has(k),stack:stackMap[k]||k};
+  }); }
   function money(v){ return perCap ? "$"+Math.round(v).toLocaleString() : "$"+(v/1e6).toFixed(2)+"M"; }
   const fmt=v=> view==="index" ? (v>=0?"+":"−")+money(Math.abs(v))+" vs 2019" : money(v);
   const yfmt=v=> view==="index" ? (v>0?"+":v<0?"−":"")+(perCap?"$"+Math.abs(v):"$"+(Math.abs(v)/1e6).toFixed(1)+"M") : (perCap?"$"+v:"$"+(v/1e6).toFixed(0)+"M");
   function basis(){ return (perCap?"per resident, ":"")+(infl?"inflation-adjusted (constant $)":"nominal $"); }
-  function titleTxt(){ return view==="index" ? "Dollar change vs 2019 in "+S().noun.toLowerCase()+" ("+basis()+")" : S().noun+" by category — "+basis(); }
+  function titleTxt(){ return view==="index" ? "Dollar change vs 2019 in "+noun().toLowerCase()+" ("+basis()+")" : noun()+" by category — "+basis(); }
   const chart=new Chart(document.getElementById("cExp"),{type:"bar",
     data:{labels:B.years,datasets:ds()},
     options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}},
+      plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}},
+          onClick:(e,item,lg)=>{const ci=lg.chart,dset=ci.data.datasets[item.datasetIndex];dset.hidden=!dset.hidden;if(dset.hidden)hidden.add(dset.label);else hidden.delete(dset.label);ci.update();}},
         tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.parsed.y)}},
         title:{display:true,text:titleTxt()}},
-      scales:{x:{},y:{beginAtZero:true,ticks:{callback:yfmt}}}}});
+      scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,ticks:{callback:yfmt}}}}});
   function redraw(){ chart.data.datasets=ds(); chart.options.plugins.title.text=titleTxt(); chart.update(); if(wrap.style.display!=="none") buildTable(); }
   document.querySelectorAll(".toggles button[data-src]").forEach(b=>b.addEventListener("click",()=>{
     src=b.dataset.src;
     document.querySelectorAll(".toggles button[data-src]").forEach(x=>x.classList.toggle("on",x===b));
     redraw();
   }));
+  document.getElementById("detailBtn").addEventListener("click",function(){
+    level = level==="detail" ? "major" : "detail";
+    this.classList.toggle("on", level==="detail");
+    redraw();
+  });
   document.querySelectorAll(".toggles button[data-tg]").forEach(b=>b.addEventListener("click",()=>{
     if(b.dataset.tg==="percap") perCap=!perCap; else infl=!infl;
     b.classList.toggle("on"); redraw();
@@ -290,9 +293,19 @@
     document.querySelectorAll(".toggles button[data-view]").forEach(x=>x.classList.toggle("on",x===b));
     redraw();
   }));
+  function syncBtns(){
+    document.querySelectorAll(".toggles button[data-src]").forEach(x=>x.classList.toggle("on",x.dataset.src===src));
+    document.getElementById("detailBtn").classList.toggle("on",level==="detail");
+    document.querySelector('.toggles [data-tg="percap"]').classList.toggle("on",perCap);
+    document.querySelector('.toggles [data-tg="infl"]').classList.toggle("on",infl);
+    document.querySelectorAll(".toggles button[data-view]").forEach(x=>x.classList.toggle("on",x.dataset.view===view));
+  }
+  document.getElementById("resetBtn").addEventListener("click",()=>{
+    hidden.clear(); src="exp"; level="major"; perCap=true; infl=true; view="index"; syncBtns(); redraw();
+  });
   const wrap=document.getElementById("expTableWrap"), btn=document.getElementById("expTblBtn");
   function buildTable(){
-    let h='<table><thead><tr><th>'+S().noun+' ($)</th>'+B.years.map(y=>'<th>'+y+'</th>').join('')+'</tr></thead><tbody>';
+    let h='<table><thead><tr><th>'+noun()+' ($)</th>'+B.years.map(y=>'<th>'+y+'</th>').join('')+'</tr></thead><tbody>';
     S().order.forEach(k=>{h+='<tr><td>'+k+'</td>'+S().data[k].map(v=>'<td>'+Math.round(v).toLocaleString()+'</td>').join('')+'</tr>';});
     h+='<tr class="total"><td>TOTAL</td>'+B.totalGF.map(v=>'<td>'+v.toLocaleString()+'</td>').join('')+'</tr></tbody></table>';
     wrap.innerHTML=h;
@@ -311,11 +324,12 @@
   const cares=[0,0.50,0.95,0.43,0.25,0.14,0.01];
   if(document.getElementById("cCovid")) new Chart(document.getElementById("cCovid"),{type:"bar",
     data:{labels:yrs,datasets:[
-      {label:"ARPA revenue-replacement (one-time)",data:arpa,backgroundColor:"#c0392b"},
-      {label:"CARES / public-health grants",data:cares,backgroundColor:"#d68910"}]},
+      {label:"ARPA revenue-replacement (one-time)",data:arpa,backgroundColor:"#c0392b",stack:"covid"},
+      {label:"CARES / public-health grants",data:cares,backgroundColor:"#d68910",stack:"covid"},
+      {type:"line",label:"Fund balance drawn to balance (savings)",data:[1.40,1.90,1.64,2.10,2.39,1.58,2.13],borderColor:"#2c6e91",backgroundColor:"#2c6e91",borderWidth:2,fill:false,tension:.3,pointRadius:[3,3,3,3,7,3,3],pointBackgroundColor:["#2c6e91","#2c6e91","#2c6e91","#2c6e91","#c0392b","#2c6e91","#2c6e91"]}]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}},
-        title:{display:true,text:"COVID/ARPA money in the budget, by year ($M): $0 → peak → $0"},
+        title:{display:true,text:"COVID/ARPA money (bars) vs. fund-balance savings draw (line), $M"},
         tooltip:{callbacks:{label:c=>c.dataset.label+": $"+c.parsed.y.toFixed(2)+"M"}}},
       scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,ticks:{callback:v=>"$"+v+"M"}}}}});
   const dl=["Sheriff","Jail","Dispatch","Finance","County Manager","Personnel","Governing Body “ARPA Special Programs”"];
@@ -327,6 +341,80 @@
         title:{display:true,text:"FY2022-23 ARPA spent on ordinary salaries (base pay)"},
         tooltip:{callbacks:{label:c=>"$"+c.parsed.x.toLocaleString()}}},
       scales:{x:{beginAtZero:true,ticks:{callback:v=>"$"+(v/1000)+"K"}}}}});
+  if(window.BUDGET && document.getElementById("cSafety")){
+    const B=window.BUDGET;
+    // Reported index offenses, FBI Crime Data Explorer (Pamlico Co. Sheriff, ORI NC0690000). 2017 omitted (partial reporting).
+    const cyears=[2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+    const crime=[358,319,252,214,null,214,228,223,260,180,178,148];
+    // Sheriff + Jail budget ($M), each fiscal year mapped to its STARTING calendar year (FY16-17→2016 … FY24-25→2024).
+    // 2014/2015 from posted FY14-15 & FY15-16 budgets (not in the 10-year dataset); FY13-14 not posted → 2013 blank.
+    const sjHard={2014:2.65,2015:2.99};
+    const fyStart={2016:0,2017:1,2018:2,2019:3,2020:4,2021:5,2022:6,2023:7,2024:8};
+    const sj=cyears.map(y=> (y in sjHard) ? sjHard[y] : ((y in fyStart) ? +((B.expDept["Sheriff"][fyStart[y]]+B.expDept["Jail"][fyStart[y]])/1e6).toFixed(2) : null));
+    new Chart(document.getElementById("cSafety"),{type:"bar",
+      data:{labels:cyears,datasets:[
+        {label:"Reported index offenses (left axis)",data:crime,backgroundColor:"#6aa8c4",borderWidth:0,order:2,yAxisID:"y"},
+        {type:"line",label:"Sheriff + Jail budget, $M (right axis)",data:sj,borderColor:"#c0392b",backgroundColor:"#c0392b",borderWidth:3,pointRadius:3,tension:.2,spanGaps:true,order:1,yAxisID:"y1"}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}},
+          title:{display:true,text:"Sheriff + Jail spending up ~110% since 2014 — while crime fell to a 15-year low"},
+          tooltip:{callbacks:{label:c=> c.dataset.yAxisID==="y1" ? c.dataset.label+": $"+c.parsed.y.toFixed(2)+"M" : c.dataset.label+": "+c.parsed.y+" offenses"}}},
+        scales:{
+          y:{position:"left",beginAtZero:true,title:{display:true,text:"Index offenses / year"}},
+          y1:{position:"right",beginAtZero:true,grid:{drawOnChartArea:false},title:{display:true,text:"$M"},ticks:{callback:v=>"$"+v+"M"}}
+        }}});
+  }
+  if(window.Chart && document.getElementById("cSheriffComp")){
+    const yrs=["FY15-16","FY16-17","FY17-18","FY18-19","FY19-20","FY20-21","FY21-22","FY22-23","FY23-24","FY24-25"];
+    const P=[1134389,1296304,1351327,1469184,1482487,1421503,1721480,1884646,2114798,2515241];
+    const O=[317835,403308,380540,384952,391245,417373,417221,509790,584199,420945];
+    const C=[92648,88000,109000,126050,0,35000,133650,50000,231615,170413];
+    const D=[0,17100,81506,87400,40714,95647,95647,48825,0,0];
+    const m=a=>a.map(v=>+(v/1e6).toFixed(3));
+    new Chart(document.getElementById("cSheriffComp"),{type:"bar",
+      data:{labels:yrs,datasets:[
+        {label:"Personnel (salaries + benefits)",data:m(P),backgroundColor:"#2c6e91",stack:"s"},
+        {label:"Operating",data:m(O),backgroundColor:"#6aa8c4",stack:"s"},
+        {label:"Capital (vehicles/equipment)",data:m(C),backgroundColor:"#d68910",stack:"s"},
+        {label:"Lease debt",data:m(D),backgroundColor:"#9aa7b2",stack:"s"}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}},
+          title:{display:true,text:"Where the Sheriff's growth went: people, not equipment ($M)"},
+          tooltip:{callbacks:{label:c=>c.dataset.label+": $"+c.parsed.y.toFixed(2)+"M"}}},
+        scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,ticks:{callback:v=>"$"+v+"M"}}}}});
+  }
+})();
+</script>
+<script>
+(function(){
+  if(!window.Chart||!document.getElementById("cWindfall")) return;
+  const labels=["FY19-20","FY20-21","FY21-22","FY22-23","FY23-24","FY24-25","FY25-26",["FY26-27","rev-neutral 43.5¢"],["FY26-27","proposed 52.5¢"]];
+  const cpi=[258.8,271.0,292.7,304.7,313.7,322.0,329.0,335.0,335.0], cbase=335.0;
+  const histN=[10.82,11.68,11.99,12.36,12.49,12.91,13.95,null,null];
+  const neuN=[null,null,null,null,null,null,null,14.0,null];
+  const propN=[null,null,null,null,null,null,null,null,16.83];
+  let real=false;
+  const adj=a=>a.map((v,i)=>v==null?null:+(v*cbase/cpi[i]).toFixed(2));
+  const cur=()=>real?[adj(histN),adj(neuN),adj(propN)]:[histN,neuN,propN];
+  const c0=cur();
+  const ch=new Chart(document.getElementById("cWindfall"),{type:"bar",
+    data:{labels:labels,datasets:[
+      {label:"Property tax collected",data:c0[0],backgroundColor:"#2c6e91"},
+      {label:"FY26-27 at revenue-neutral (43.5¢)",data:c0[1],backgroundColor:"#2e8b57"},
+      {label:"FY26-27 proposed (52.5¢) — the windfall",data:c0[2],backgroundColor:"#c0392b"}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}},
+        title:{display:true,text:"Property-tax revenue by year ($M) — the FY2026-27 jump"},
+        tooltip:{callbacks:{label:c=>c.dataset.label+": $"+c.parsed.y.toFixed(2)+"M"}}},
+      scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,ticks:{callback:v=>"$"+v+"M"}}}}});
+  document.querySelectorAll(".toggles button[data-wf]").forEach(b=>b.addEventListener("click",()=>{
+    real=b.dataset.wf==="real";
+    document.querySelectorAll(".toggles button[data-wf]").forEach(x=>x.classList.toggle("on",x===b));
+    const cc=cur(); ch.data.datasets.forEach((ds,i)=>ds.data=cc[i]);
+    ch.options.plugins.title.text="Property-tax revenue by year ($M"+(real?", inflation-adjusted to 2026 $":"")+") — the FY2026-27 jump";
+    ch.update();
+  }));
 })();
 </script>
 </body>

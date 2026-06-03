@@ -30,6 +30,7 @@
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 1px 3px rgba(20,40,60,.04)}
   .btn{display:inline-block;background:var(--navy);color:#fff;font-weight:700;font-size:15px;padding:12px 20px;border-radius:11px;text-decoration:none;border:none;cursor:pointer}
   .btn.red{background:var(--red)}.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+  .btn.sm{padding:7px 12px;font-size:13px;border-radius:9px}
   .btn:hover{filter:brightness(1.05)}
   .commgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
   @media(max-width:600px){.commgrid{grid-template-columns:1fr}}
@@ -44,6 +45,12 @@
   .pill{display:inline-block;background:#eafaf1;color:#1d7a46;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:8px}
   .note{font-size:13px;color:var(--muted)}
   .anon{background:#eef6fb;border-left:4px solid var(--navy);padding:12px 16px;border-radius:0 10px 10px 0;font-size:14px;margin:14px 0}
+  .f-lab{display:block;font-weight:700;font-size:13px;margin:12px 0 4px}
+  .f-in{width:100%;font:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;color:var(--ink);background:#fff}
+  .f-in:focus{outline:none;border-color:var(--navy)}
+  textarea.f-in{resize:vertical}
+  .f-row{display:flex;gap:12px;flex-wrap:wrap}
+  .f-row > div{flex:1;min-width:180px}
   ul.clean{padding-left:20px}ul.clean li{margin:6px 0}
   .meet{display:flex;gap:14px;flex-wrap:wrap}
   .meet .m{flex:1;min-width:200px;border:1px solid var(--line);border-radius:12px;padding:14px}
@@ -55,7 +62,7 @@
 </head>
 <body>
 <header><div class="wrap">
-  <div class="nav"><a href="index.html">← Full report</a><a href="calculator.html">🧮 Tax calculator</a></div>
+  <div class="nav"><a href="index.html">← Full report</a><a href="calculator.html">🧮 Tax calculator</a><a href="documents.html">📄 Documents</a></div>
   <h1>Get involved</h1>
   <p>Contact your commissioners, find the next budget meeting, share documents or corrections, request research, and get updates. <strong>No login or account needed — you can do all of this anonymously.</strong></p>
 </div></header>
@@ -76,18 +83,39 @@
   <div class="kicker">Make your voice heard</div>
   <h2>Contact your county commissioners</h2>
   <p class="lead">They set the tax rate. The single most effective thing you can do is tell them — politely and on the record — to adopt the revenue-neutral rate. One click emails all seven with an editable message.</p>
-  <div class="card" style="text-align:center">
-    <button class="btn red" id="emailAll">✉️ Email all 7 commissioners (editable)</button>
-    <p class="note" style="margin-top:10px">Opens your email app with a pre-written, fully editable message. Add your name &amp; township and send.</p>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px">
+      <span style="font-weight:700">Pre-written message to all 7 — edit, then send:</span>
+      <button class="btn ghost sm" id="copyMsgBtn">📋 Copy</button>
+    </div>
+    <textarea id="msgBox" rows="12" style="width:100%;font:inherit;font-size:14px;line-height:1.5;padding:12px;border:1px solid var(--line);border-radius:10px;resize:vertical;color:var(--ink)">Dear Pamlico County Commissioners,
+
+As a Pamlico County taxpayer, I am asking you to adopt the revenue-neutral property tax rate of 43.5 cents (or lower) for FY2026-27, instead of the proposed 52.5 cents.
+
+After the 2026 revaluation, a 52.5-cent rate collects roughly 21% more than revenue-neutral -- about $2.9 million a year in additional taxes -- even though the county has no deficit and holds reserves well above the state minimum, and while many valuation appeals remain unresolved.
+
+Please hold the line for taxpayers and adopt the revenue-neutral rate.
+
+Sincerely,
+[Your name and township]</textarea>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+      <button class="btn red" id="gmailBtn">Open Gmail</button>
+      <button class="btn" id="mailtoBtn">Open Mail App</button>
+    </div>
+    <p class="note" style="margin-top:10px">Add your name &amp; township above, then click <strong>Open Gmail</strong> (opens a compose window if you're signed in) — or use your own mail app.</p>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin:4px 0 8px">
+    <span class="note" style="font-weight:600">Or contact them individually:</span>
+    <button class="btn ghost sm" id="copyToBtn">📋 Copy all 7 addresses</button>
   </div>
   <div class="commgrid">
-    <div class="comm"><div class="nm">Kenny Heath</div><div class="seat">Chairman · Township 5</div><a href="mailto:kenny.heath@pamlicocountync.gov">kenny.heath@pamlicocountync.gov</a><a href="tel:12526709854">(252) 670-9854</a></div>
-    <div class="comm"><div class="nm">Edward Riggs Jr.</div><div class="seat">Vice-Chair · Township 3</div><a href="mailto:eriggsjr.pamlico@gmail.com">eriggsjr.pamlico@gmail.com</a><a href="tel:12526710457">(252) 671-0457</a></div>
-    <div class="comm"><div class="nm">Kari Forrest</div><div class="seat">At Large</div><a href="mailto:kari.forrest@pamlicocountync.gov">kari.forrest@pamlicocountync.gov</a><a href="tel:12523259545">(252) 325-9545</a></div>
-    <div class="comm"><div class="nm">Doug Brinson</div><div class="seat">At Large</div><a href="mailto:doug.brinson@pamlicocountync.gov">doug.brinson@pamlicocountync.gov</a><a href="tel:12522490690">(252) 249-0690</a></div>
-    <div class="comm"><div class="nm">Thomas Mills</div><div class="seat">Township 1</div><a href="mailto:thomas.mills@pamlicocountync.gov">thomas.mills@pamlicocountync.gov</a><a href="tel:12526710510">(252) 671-0510</a></div>
-    <div class="comm"><div class="nm">Candy Bohmert</div><div class="seat">Township 2</div><a href="mailto:candybohmert@gmail.com">candybohmert@gmail.com</a><a href="tel:12526751411">(252) 675-1411</a></div>
-    <div class="comm"><div class="nm">Carl Ollison</div><div class="seat">Township 4</div><a href="mailto:killercarl@icloud.com">killercarl@icloud.com</a><a href="tel:12526703247">(252) 670-3247</a></div>
+    <div class="comm"><div class="nm">Kenny Heath <span style="color:#b03a2e;font-weight:400;font-size:12px">(R)</span></div><div class="seat">Chairman · Township 5</div><a href="mailto:kenny.heath@pamlicocountync.gov">kenny.heath@pamlicocountync.gov</a><a href="tel:12526709854">(252) 670-9854</a></div>
+    <div class="comm"><div class="nm">Edward Riggs Jr. <span style="color:#b03a2e;font-weight:400;font-size:12px">(R)</span></div><div class="seat">Vice-Chair · Township 3</div><a href="mailto:eriggsjr.pamlico@gmail.com">eriggsjr.pamlico@gmail.com</a><a href="tel:12526710457">(252) 671-0457</a></div>
+    <div class="comm"><div class="nm">Kari Forrest <span style="color:#b03a2e;font-weight:400;font-size:12px">(R)</span></div><div class="seat">At Large</div><a href="mailto:kari.forrest@pamlicocountync.gov">kari.forrest@pamlicocountync.gov</a><a href="tel:12523259545">(252) 325-9545</a></div>
+    <div class="comm"><div class="nm">Doug Brinson <span style="color:#b03a2e;font-weight:400;font-size:12px">(R)</span></div><div class="seat">At Large</div><a href="mailto:doug.brinson@pamlicocountync.gov">doug.brinson@pamlicocountync.gov</a><a href="tel:12522490690">(252) 249-0690</a></div>
+    <div class="comm"><div class="nm">Thomas Mills <span style="color:#b03a2e;font-weight:400;font-size:12px">(R)</span></div><div class="seat">Township 1</div><a href="mailto:thomas.mills@pamlicocountync.gov">thomas.mills@pamlicocountync.gov</a><a href="tel:12526710510">(252) 671-0510</a></div>
+    <div class="comm"><div class="nm">Candy Bohmert <span style="color:#b03a2e;font-weight:400;font-size:12px">(R)</span></div><div class="seat">Township 2</div><a href="mailto:candybohmert@gmail.com">candybohmert@gmail.com</a><a href="tel:12526751411">(252) 675-1411</a></div>
+    <div class="comm"><div class="nm">Carl Ollison <span style="color:#2c6e91;font-weight:400;font-size:12px">(D)</span></div><div class="seat">Township 4</div><a href="mailto:killercarl@icloud.com">killercarl@icloud.com</a><a href="tel:12526703247">(252) 670-3247</a></div>
   </div>
   <p class="note">Clerk to the Board: Tracy Boyd · (252) 745-3133 · County Administrative Building, 302 Main St, Bayboro. Published contact info from the county website; verify before any formal filing.</p>
 </section>
@@ -107,7 +135,7 @@
       <li>Keep it to ~2-3 minutes: state your name/township, the ask (adopt revenue-neutral 43.5¢), and one personal fact (your valuation jump or bill increase).</li>
       <li>Can't attend? Email all commissioners (above) — written comments are part of the record.</li>
     </ul>
-    <a class="btn ghost" href="https://pamlicocounty.org/minutes___agendas/board_of_commissioners_agendas___minutes.php" target="_blank" rel="noopener">View agendas &amp; minutes →</a>
+    <a class="btn ghost" href="https://pamlicocounty.org/minutes_agendas/board_of_commissioners_agendas_minutes.php" target="_blank" rel="noopener">View agendas &amp; minutes →</a>
   </div>
   <p class="note">Meeting dates/locations from the county website. We update the hearing date here as soon as it's posted.</p>
 </section>
@@ -118,13 +146,31 @@
   <p class="lead">Spotted an error, have context, or want to weigh in? Tell us. Accuracy is the whole point — we'll fix documented mistakes fast and credit nothing to you unless you ask.</p>
   <div class="anon">🔒 <strong>Anonymous by default.</strong> No login, no account. Don't include your name unless you want to. Submissions are reviewed before anything is published.</div>
   <div class="card">
-    <!-- EMBED: paste your Tally/Formspree comment-form <iframe> here, replacing this whole .embed-slot div -->
-    <div class="embed-slot" id="slot-corrections">
-      <div class="ic">📝</div>
-      <h3>Comment &amp; correction form</h3>
-      <p>This form is being set up. Until it's live, you can reach us through the updates list below or email a campaign address (coming soon).</p>
-      <span class="pill">Anonymous · moderated</span>
-    </div>
+    <!-- To activate: replace WEB3FORMS_ACCESS_KEY below with your free key from https://web3forms.com (enter the campaign email, no account needed). -->
+    <form id="correctionForm">
+      <input type="hidden" name="access_key" value="f6bd9cca-133c-49be-ad16-168c38ee3622">
+      <input type="hidden" name="subject" value="Pamlico Tax Facts — Correction / Comment">
+      <input type="hidden" name="from_name" value="Pamlico Tax Facts website">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <label class="f-lab" for="cf-type">This is a…</label>
+      <select class="f-in" id="cf-type" name="type">
+        <option>General comment</option>
+        <option>Correction to a fact or number</option>
+        <option>Question</option>
+        <option>Tip / something to look into</option>
+      </select>
+      <label class="f-lab" for="cf-msg">Your message *</label>
+      <textarea class="f-in" id="cf-msg" name="message" rows="5" required placeholder="What would you like to tell us? If it's a correction, what's wrong and what's the correct information?"></textarea>
+      <label class="f-lab" for="cf-src">Source or link (optional)</label>
+      <input class="f-in" id="cf-src" type="text" name="source" placeholder="A document, URL, or where we can verify it">
+      <div class="f-row">
+        <div><label class="f-lab" for="cf-name">Name to credit (optional)</label><input class="f-in" id="cf-name" type="text" name="name" placeholder="Leave blank to stay anonymous"></div>
+        <div><label class="f-lab" for="cf-email">Email for a reply (optional)</label><input class="f-in" id="cf-email" type="email" name="email" placeholder="Only if you want a response"></div>
+      </div>
+      <label style="font-size:13px;display:flex;gap:8px;align-items:flex-start;margin-top:10px"><input type="checkbox" name="ok_to_publish" value="Yes"> It's OK to publish this comment (anonymously).</label>
+      <button class="btn red" type="submit" style="margin-top:14px">Send</button>
+    </form>
+    <div id="correctionThanks" class="anon" style="display:none">✓ Thank you — your submission came through. We review everything before publishing or acting on it.</div>
   </div>
 </section>
 
@@ -204,21 +250,25 @@ const COMMISSIONERS = [
   "doug.brinson@pamlicocountync.gov","thomas.mills@pamlicocountync.gov","candybohmert@gmail.com","killercarl@icloud.com"
 ];
 const SUBJECT = "Please adopt the revenue-neutral property tax rate";
-const BODY =
-`Dear Pamlico County Commissioners,
+const TO = COMMISSIONERS.join(",");
+const msg = () => document.getElementById("msgBox").value;
+function flash(btn,txt){const o=btn.textContent;btn.textContent=txt;setTimeout(()=>{btn.textContent=o;},2000);}
 
-As a Pamlico County taxpayer, I am asking you to adopt the revenue-neutral property tax rate of 43.5 cents (or lower) for FY2026-27, instead of the proposed 52.5 cents.
-
-After the 2026 revaluation, a 52.5-cent rate collects roughly 21% more than revenue-neutral -- about $2.9 million a year in additional taxes -- even though the county has no deficit and holds reserves well above the state minimum, and while many valuation appeals remain unresolved.
-
-Please hold the line for taxpayers and adopt the revenue-neutral rate.
-
-Sincerely,
-[Your name and township]`;
-
-document.getElementById("emailAll").addEventListener("click",()=>{
-  const url="mailto:"+COMMISSIONERS.join(",")+"?subject="+encodeURIComponent(SUBJECT)+"&body="+encodeURIComponent(BODY);
-  window.location.href=url;
+// Gmail web compose (works for Gmail users with no desktop mail app)
+document.getElementById("gmailBtn").addEventListener("click",()=>{
+  const url="https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(TO)+"&su="+encodeURIComponent(SUBJECT)+"&body="+encodeURIComponent(msg());
+  window.open(url,"_blank","noopener");
+});
+// Fallback: default OS mail app
+document.getElementById("mailtoBtn").addEventListener("click",()=>{
+  window.location.href="mailto:"+TO+"?subject="+encodeURIComponent(SUBJECT)+"&body="+encodeURIComponent(msg());
+});
+// Universal fallback: copy
+document.getElementById("copyMsgBtn").addEventListener("click",async e=>{
+  try{await navigator.clipboard.writeText(msg());flash(e.target,"✓ Copied!");}catch(_){}
+});
+document.getElementById("copyToBtn").addEventListener("click",async e=>{
+  try{await navigator.clipboard.writeText(TO);flash(e.target,"✓ Addresses copied!");}catch(_){}
 });
 
 // ---- Draft a public-records request to the Clerk ----
@@ -239,6 +289,22 @@ Sincerely,
 [Your name]`;
   window.location.href="mailto:tracy.boyd@pamlicocountync.gov?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(body);
 });
+
+// ---- Correction / comment form (Web3Forms) ----
+const cForm=document.getElementById("correctionForm");
+if(cForm){
+  cForm.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const btn=cForm.querySelector("button[type=submit]");
+    btn.disabled=true; const orig=btn.textContent; btn.textContent="Sending…";
+    try{
+      const res=await fetch("https://api.web3forms.com/submit",{method:"POST",body:new FormData(cForm)});
+      const out=await res.json();
+      if(out.success){cForm.style.display="none";document.getElementById("correctionThanks").style.display="block";}
+      else{btn.disabled=false;btn.textContent=orig;alert("Sorry, that didn't go through. Please try again.");}
+    }catch(_){btn.disabled=false;btn.textContent=orig;alert("Network error — please try again.");}
+  });
+}
 </script>
 </body>
 </html>

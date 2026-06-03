@@ -70,9 +70,8 @@
 <nav class="toc"><div class="wrap">
   <a href="#commissioners">Contact commissioners</a>
   <a href="#meetings">Budget meetings</a>
-  <a href="#corrections">Corrections</a>
+  <a href="#corrections">Corrections &amp; research</a>
   <a href="#documents">Share documents</a>
-  <a href="#research">Request research</a>
   <a href="#paperwork">File paperwork</a>
   <a href="#updates">Get updates</a>
 </div></nav>
@@ -142,14 +141,14 @@ Sincerely,
 
 <section id="corrections">
   <div class="kicker">Help us get it right</div>
-  <h2>Submit a correction or comment</h2>
-  <p class="lead">Spotted an error, have context, or want to weigh in? Tell us. Accuracy is the whole point — we'll fix documented mistakes fast and credit nothing to you unless you ask.</p>
+  <h2>Submit a correction, comment, or request research</h2>
+  <p class="lead">Spotted an error, have context, want to weigh in, or want us to dig into something? Tell us. Accuracy is the whole point — we'll fix documented mistakes fast, and good questions become the next thing we investigate. We credit nothing to you unless you ask.</p>
   <div class="anon">🔒 <strong>Anonymous by default.</strong> No login, no account. Don't include your name unless you want to. Submissions are reviewed before anything is published.</div>
   <div class="card">
     <!-- To activate: replace WEB3FORMS_ACCESS_KEY below with your free key from https://web3forms.com (enter the campaign email, no account needed). -->
     <form id="correctionForm">
       <input type="hidden" name="access_key" value="f6bd9cca-133c-49be-ad16-168c38ee3622">
-      <input type="hidden" name="subject" value="Pamlico Tax Facts — Correction / Comment">
+      <input type="hidden" name="subject" value="Pamlico Tax Facts — Comment / Correction / Research">
       <input type="hidden" name="from_name" value="Pamlico Tax Facts website">
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <label class="f-lab" for="cf-type">This is a…</label>
@@ -157,10 +156,11 @@ Sincerely,
         <option>General comment</option>
         <option>Correction to a fact or number</option>
         <option>Question</option>
+        <option>Research request / something to investigate</option>
         <option>Tip / something to look into</option>
       </select>
       <label class="f-lab" for="cf-msg">Your message *</label>
-      <textarea class="f-in" id="cf-msg" name="message" rows="5" required placeholder="What would you like to tell us? If it's a correction, what's wrong and what's the correct information?"></textarea>
+      <textarea class="f-in" id="cf-msg" name="message" rows="5" required placeholder="What would you like to tell us? If it's a correction, what's wrong and the correct info. If you're requesting research, what should we dig into?"></textarea>
       <label class="f-lab" for="cf-src">Source or link (optional)</label>
       <input class="f-in" id="cf-src" type="text" name="source" placeholder="A document, URL, or where we can verify it">
       <div class="f-row">
@@ -180,28 +180,10 @@ Sincerely,
   <p class="lead">Got a budget document, a reappraisal notice, an appeal outcome, an email, or a tip? Upload it. Real documents are what make this bulletproof — especially appeal results (your old value, new value, and any reduction you won).</p>
   <div class="anon">🔒 <strong>Anonymous uploads.</strong> No account needed. Strip your name from files if you want full anonymity. We review everything before using it and never publish personal info without permission.</div>
   <div class="card">
-    <!-- EMBED: paste your Tally file-upload form OR a Dropbox/Drive "file request" link/button here -->
-    <div class="embed-slot" id="slot-documents">
-      <div class="ic">📎</div>
-      <h3>Document upload</h3>
-      <p>Secure anonymous upload is being set up (file-request link). Check back shortly.</p>
-      <span class="pill">Anonymous · no account</span>
+    <div style="border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;padding:4px">
+      <iframe data-tally-src="https://tally.so/embed/Bz0Nz1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0" title="Share Documents & Tips"></iframe>
     </div>
-  </div>
-</section>
-
-<section id="research">
-  <div class="kicker">Put us to work</div>
-  <h2>Request research or ask a question</h2>
-  <p class="lead">Want us to dig into a specific department, contract, or number? Confused about how something works? Ask — good questions become the next thing we investigate and publish.</p>
-  <div class="card">
-    <!-- EMBED: paste your Tally/Formspree "ask a question / request research" form <iframe> here -->
-    <div class="embed-slot" id="slot-research">
-      <div class="ic">🔎</div>
-      <h3>Research request &amp; questions</h3>
-      <p>Question form is being set up. Until then, send requests via the updates list below.</p>
-      <span class="pill">Anonymous · optional contact</span>
-    </div>
+    <script async src="https://tally.so/widgets/embed.js"></script>
   </div>
 </section>
 
@@ -305,6 +287,7 @@ if(cForm){
     }catch(_){btn.disabled=false;btn.textContent=orig;alert("Network error — please try again.");}
   });
 }
+
 </script>
 </body>
 </html>

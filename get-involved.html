@@ -180,9 +180,8 @@ Sincerely,
   <p class="lead">Got a budget document, a reappraisal notice, an appeal outcome, an email, or a tip? Upload it. Real documents are what make this bulletproof — especially appeal results (your old value, new value, and any reduction you won).</p>
   <div class="anon">🔒 <strong>Anonymous uploads.</strong> No account needed. Strip your name from files if you want full anonymity. We review everything before using it and never publish personal info without permission.</div>
   <div class="card">
-    <div style="border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;padding:4px">
-      <iframe data-tally-src="https://tally.so/embed/Bz0Nz1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0" title="Share Documents & Tips"></iframe>
-    </div>
+    <button class="btn red" data-tally-open="Bz0Nz1" data-tally-layout="modal" data-tally-width="640" style="font-size:16px">📎 Share a document or tip</button>
+    <p class="note" style="margin-top:10px">Opens a secure form — attach a file (reappraisal notice, email, PDF, photo) or just share appeal numbers. Anonymous; no account needed.</p>
     <script async src="https://tally.so/widgets/embed.js"></script>
   </div>
 </section>
@@ -205,16 +204,21 @@ Sincerely,
 <section id="updates">
   <div class="kicker">Stay in the loop</div>
   <h2>Get updates (optional)</h2>
-  <p class="lead">Want a heads-up before the budget vote, when the rate is set, or when we publish new findings? Drop your email. That's it — no name, unsubscribe anytime.</p>
-  <div class="anon">🔒 Email only, used only for Pamlico Tax Facts updates. Never sold or shared. Unsubscribe in one click.</div>
+  <p class="lead">Want a heads-up before the budget vote, when the rate is set, or when we publish new findings? Drop your email. That's it — just your address, and we'll take you off the list anytime you ask.</p>
+  <div class="anon">🔒 Email only, used only for Pamlico Tax Facts updates. Never sold or shared. Ask to be removed anytime.</div>
   <div class="card">
-    <!-- EMBED: paste your Buttondown/Mailchimp signup form <iframe> or HTML here -->
-    <div class="embed-slot" id="slot-updates">
-      <div class="ic">📨</div>
-      <h3>Update signup</h3>
-      <p>The mailing list is being set up. Check back shortly to subscribe.</p>
-      <span class="pill">Email only · unsubscribe anytime</span>
-    </div>
+    <form id="updatesForm">
+      <input type="hidden" name="access_key" value="f6bd9cca-133c-49be-ad16-168c38ee3622">
+      <input type="hidden" name="subject" value="Pamlico Tax Facts — Update Signup">
+      <input type="hidden" name="from_name" value="Pamlico Tax Facts website">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="f-row" style="align-items:flex-end">
+        <div><label class="f-lab" for="uf-email">Email address *</label><input class="f-in" id="uf-email" type="email" name="email" required placeholder="you@example.com"></div>
+        <div><label class="f-lab" for="uf-name">Name (optional)</label><input class="f-in" id="uf-name" type="text" name="name" placeholder="Optional"></div>
+      </div>
+      <button class="btn red" type="submit" style="margin-top:12px">Keep me posted</button>
+    </form>
+    <div id="updatesThanks" class="anon" style="display:none">✓ You're on the list. We'll only email about Pamlico Tax Facts updates — and we'll remove you the moment you ask.</div>
   </div>
 </section>
 
@@ -283,6 +287,22 @@ if(cForm){
       const res=await fetch("https://api.web3forms.com/submit",{method:"POST",body:new FormData(cForm)});
       const out=await res.json();
       if(out.success){cForm.style.display="none";document.getElementById("correctionThanks").style.display="block";}
+      else{btn.disabled=false;btn.textContent=orig;alert("Sorry, that didn't go through. Please try again.");}
+    }catch(_){btn.disabled=false;btn.textContent=orig;alert("Network error — please try again.");}
+  });
+}
+
+// ---- Update signup (Web3Forms, same key) ----
+const uForm=document.getElementById("updatesForm");
+if(uForm){
+  uForm.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const btn=uForm.querySelector("button[type=submit]");
+    btn.disabled=true; const orig=btn.textContent; btn.textContent="Adding…";
+    try{
+      const res=await fetch("https://api.web3forms.com/submit",{method:"POST",body:new FormData(uForm)});
+      const out=await res.json();
+      if(out.success){uForm.style.display="none";document.getElementById("updatesThanks").style.display="block";}
       else{btn.disabled=false;btn.textContent=orig;alert("Sorry, that didn't go through. Please try again.");}
     }catch(_){btn.disabled=false;btn.textContent=orig;alert("Network error — please try again.");}
   });

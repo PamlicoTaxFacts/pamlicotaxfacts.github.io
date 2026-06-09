@@ -9,7 +9,7 @@
 <title>What Will the New Tax Rate Cost YOU? · Pamlico Tax Facts</title>
 <meta name="description" content="Compare your Pamlico County tax bill before and after the 2026 revaluation, and see how much the proposed rate costs you versus revenue-neutral.">
 <meta property="og:title" content="What Will Pamlico County's New Tax Rate Cost YOU?">
-<meta property="og:description" content="Enter your old and new property values: see your bill before vs. after the 2026 revaluation, at the proposed 52.5¢ vs. revenue-neutral 43.5¢.">
+<meta property="og:description" content="Enter your old and new property values: see your bill before vs. after the 2026 revaluation, at the proposed 50.75¢ vs. revenue-neutral ~43.75¢.">
 <style>
   :root{--ink:#15202b;--muted:#5b6b7a;--bg:#f7f9fb;--card:#fff;--line:#e3e9ef;
     --red:#c0392b;--navy:#2c6e91;--green:#2e8b57;--grey:#9aa7b2;--maxw:760px}
@@ -117,14 +117,14 @@
 
     <div class="ratehead">
       <label style="margin:0">NEW county tax rate</label>
-      <div class="rateval"><span id="ratec">52.5</span>¢ <small>per $100 · <span id="rated">0.00525</span></small></div>
+      <div class="rateval"><span id="ratec">50.75</span>¢ <small>per $100 · <span id="rated">0.005075</span></small></div>
     </div>
-    <input id="rate" type="range" min="30" max="75" step="0.5" value="52.5">
-    <div class="ticks"><span>30¢</span><span>neutral 43.5¢</span><span>proposed 52.5¢</span><span>old 64.5¢</span><span>75¢</span></div>
+    <input id="rate" type="range" min="30" max="75" step="0.25" value="50.75">
+    <div class="ticks"><span>30¢</span><span>neutral 43.75¢</span><span>proposed 50.75¢</span><span>old 64.5¢</span><span>75¢</span></div>
 
     <div class="snaps">
-      <button class="neutral" data-r="43.5">Revenue-neutral<span class="s"><span class="c">43.5¢</span> · holds you harmless</span></button>
-      <button class="proposed" data-r="52.5">Proposed<span class="s"><span class="c">52.5¢</span> · ~21% above neutral</span></button>
+      <button class="neutral" data-r="43.75">Revenue-neutral<span class="s"><span class="c">43.75¢</span> · holds you harmless</span></button>
+      <button class="proposed" data-r="50.75">Proposed<span class="s"><span class="c">50.75¢</span> · ~16% above neutral</span></button>
       <button class="old" data-r="64.5">Old rate<span class="s">64.5¢ · FY2025-26</span></button>
     </div>
   </div>
@@ -132,8 +132,8 @@
   <div class="card">
     <div class="three">
       <div class="b"><div class="h">Before<br>(old value @ 64.5¢)</div><div class="v" id="oldBill">$1,290</div><div class="r" id="oldR">your prior bill</div></div>
-      <div class="b now"><div class="h">Now<br>(new value @ <span id="nowRate">52.5</span>¢)</div><div class="v" id="newBill">$2,100</div><div class="r">your new bill</div></div>
-      <div class="b neu"><div class="h">If revenue-neutral<br>(new value @ 43.5¢)</div><div class="v" id="neuBill">$1,740</div><div class="r">would-be bill</div></div>
+      <div class="b now"><div class="h">Now<br>(new value @ <span id="nowRate">50.75</span>¢)</div><div class="v" id="newBill">$2,030</div><div class="r">your new bill</div></div>
+      <div class="b neu"><div class="h">If revenue-neutral<br>(new value @ 43.75¢)</div><div class="v" id="neuBill">$1,740</div><div class="r">would-be bill</div></div>
     </div>
     <div class="deltas">
       <div class="box up" id="changeBox"><div class="h" id="changeH">Change to your bill</div><div class="v" id="changeV">+$810/yr</div></div>
@@ -146,12 +146,12 @@
   </div>
 
   <p class="foot">
-    Estimate only, for the <strong>county</strong> property-tax rate (per $100 of assessed value). Your actual bill may include municipal, fire-district, or other rates and any exemptions. Rates: old 64.5¢ (FY2025-26, per NCDOR/county); revenue-neutral 43.5¢ and proposed 52.5¢ for FY2026-27 (County Compass, Apr 27 2026). Figures and sources in the <a href="index.html">full report</a>. Independent citizen analysis.
+    Estimate only, for the <strong>county</strong> property-tax rate (per $100 of assessed value). Your actual bill may include municipal, fire-district, or other rates and any exemptions. Rates: old 64.5¢ (FY2025-26, per NCDOR/county); revenue-neutral ~43.75¢ and proposed 50.75¢ for FY2026-27 (June 2026 budget meeting; as reported, pending official minutes). Figures and sources in the <a href="index.html">full report</a>. Independent citizen analysis.
   </p>
 </main>
 
 <script>
-const NEUTRAL=43.5, PROPOSED=52.5, OLD_RATE=64.5;
+const NEUTRAL=43.75, PROPOSED=50.75, OLD_RATE=64.5;
 const $=id=>document.getElementById(id);
 const money=n=>"$"+Math.round(n).toLocaleString();
 const pctOf=(a,b)=> b>0 ? (a/b-1)*100 : 0;

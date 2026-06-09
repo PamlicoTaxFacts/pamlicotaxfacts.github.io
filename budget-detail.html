@@ -63,7 +63,7 @@
 <main class="wrap">
 
 <div class="callout" style="border-left:5px solid #15202b;background:#fff;font-size:16px;margin-top:6px">
-  From around 2022, the Commission appears to have used ARPA money as much to <strong>expand ongoing departments</strong> as to cover real emergencies. The federal cash is gone, but that spending stayed in the budget, and the county now wants a <strong>permanent ~16% property-tax increase</strong> to keep paying for it. The revaluation it rests on is <strong>regressive</strong> (it over-assesses the cheapest homes), and it's fair to ask why a <strong>6-to-1 Republican board</strong>, in a <strong>slow-growing and aging</strong> county, is overseeing this. The charts below are the facts — take your time and make up your own mind.
+  From around 2022, the Commission appears to have used ARPA money as much to <strong>expand ongoing departments</strong> as to cover real emergencies. The federal cash is gone, but that spending stayed in the budget, and the county now wants a <strong>permanent ~19% property-tax increase</strong> to keep paying for it. The revaluation it rests on is <strong>regressive</strong> (it over-assesses the cheapest homes), and it's fair to ask why a <strong>6-to-1 Republican board</strong>, in a <strong>slow-growing and aging</strong> county, is overseeing this. The charts below are the facts — take your time and make up your own mind.
 </div>
 
 <div class="callout good" style="margin-top:4px">💬 <strong>Thank you to the readers sending corrections and tips.</strong> Your feedback is being read and incorporated as it comes in — keep it coming via <a href="get-involved.html">Get Involved</a>. · <a href="comments.html">Read readers' comments →</a></div>
@@ -78,13 +78,13 @@
 <section>
   <div class="kicker">The headline</div>
   <h2>Property tax: gentle climb, then the FY2026-27 jump</h2>
-  <p class="lead">Property-tax revenue rose modestly for years — roughly tracking inflation — and the county is even <em>lowering the rate</em> from 64.5¢ to a proposed 50.75¢. But the 2026 revaluation sharply raised valuations — the revenue-neutral rate (~43.75¢ vs the old 64.5¢) implies the tax base grew by <strong>roughly half on average</strong> (many homes more) — so that "lower" rate collects far MORE. The green bar is the revenue-neutral rate (~43.75¢, which holds revenue flat); the red bar is the proposed 50.75¢ — a <strong>big jump, not a normalization</strong>.</p>
+  <p class="lead">Property-tax revenue rose modestly for years — roughly tracking inflation — and the county is even <em>lowering the rate</em> from 64.5¢ to a proposed 52.0¢. But the 2026 revaluation sharply raised valuations — the revenue-neutral rate (~43.75¢ vs the old 64.5¢) implies the tax base grew by <strong>roughly half on average</strong> (many homes more) — so that "lower" rate collects far MORE. The green bar is the revenue-neutral rate (~43.75¢, which holds revenue flat); the red bar is the proposed 52.0¢ — a <strong>big jump, not a normalization</strong>.</p>
   <div class="toggles">
     <button data-wf="nom" class="on">Nominal $</button>
     <button data-wf="real">Inflation-adjusted (2026 $)</button>
   </div>
   <div class="card"><div class="chart-box"><canvas id="cWindfall"></canvas></div></div>
-  <p class="note">Toggle <strong>Inflation-adjusted</strong> and you'll see real property tax has been roughly flat (even dipping) for years — which makes the proposed FY2026-27 jump stand out even more. County property-tax revenue ($M). FY2026-27 figures as reported: revenue-neutral ~43.75¢ ≈ holds FY2025-26 revenue; proposed 50.75¢ ≈ +16% (~$2.2M more) on the revalued base. Rate history: 62.5¢ (2020-23) → 64.5¢ (2024-25) → proposed 50.75¢ on revalued property. <a href="documents.html">Sources</a>.</p>
+  <p class="note">Toggle <strong>Inflation-adjusted</strong> and you'll see real property tax has been roughly flat (even dipping) for years — which makes the proposed FY2026-27 jump stand out even more. County property-tax revenue ($M). FY2026-27 figures as reported: revenue-neutral ~43.75¢ ≈ holds FY2025-26 revenue; proposed 52.0¢ ≈ +19% (~$2.6M more) on the revalued base. Rate history: 62.5¢ (2020-23) → 64.5¢ (2024-25) → proposed 52.0¢ on revalued property. <a href="documents.html">Sources</a>.</p>
 </section>
 
 <section>
@@ -518,11 +518,11 @@
 <script>
 (function(){
   if(!window.Chart||!document.getElementById("cWindfall")) return;
-  const labels=["FY19-20","FY20-21","FY21-22","FY22-23","FY23-24","FY24-25","FY25-26",["FY26-27","rev-neutral 43.75¢"],["FY26-27","proposed 50.75¢"]];
+  const labels=["FY19-20","FY20-21","FY21-22","FY22-23","FY23-24","FY24-25","FY25-26",["FY26-27","rev-neutral 43.75¢"],["FY26-27","proposed 52.0¢"]];
   const cpi=[258.8,271.0,292.7,304.7,313.7,322.0,329.0,335.0,335.0], cbase=335.0;
   const histN=[10.82,11.68,11.99,12.36,12.49,12.91,13.95,null,null];
   const neuN=[null,null,null,null,null,null,null,14.0,null];
-  const propN=[null,null,null,null,null,null,null,null,16.24];
+  const propN=[null,null,null,null,null,null,null,null,16.64];
   let real=false;
   const adj=a=>a.map((v,i)=>v==null?null:+(v*cbase/cpi[i]).toFixed(2));
   const cur=()=>real?[adj(histN),adj(neuN),adj(propN)]:[histN,neuN,propN];
@@ -531,7 +531,7 @@
     data:{labels:labels,datasets:[
       {label:"Property tax collected",data:c0[0],backgroundColor:"#2c6e91"},
       {label:"FY26-27 at revenue-neutral (43.75¢)",data:c0[1],backgroundColor:"#2e8b57"},
-      {label:"FY26-27 proposed (50.75¢) — the windfall",data:c0[2],backgroundColor:"#c0392b"}]},
+      {label:"FY26-27 proposed (52.0¢) — the windfall",data:c0[2],backgroundColor:"#c0392b"}]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}},
         title:{display:true,text:"Property-tax revenue by year ($M) — the FY2026-27 jump"},

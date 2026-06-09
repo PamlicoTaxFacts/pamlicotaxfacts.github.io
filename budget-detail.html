@@ -281,7 +281,7 @@
   const dord=d=>Object.keys(d).sort((a,b)=>d[b][LY]-d[a][LY]);
   const SRC={
     exp:{noun:"Spending",
-      major:{data:B.expCategories,order:["Education","Public Safety & EMS","Jail / Detention","Human Services","General Government","Community & Debt","Other / smaller depts","ARPA → Public Safety","ARPA → General Gov't","COVID/CARES → Health & other"],colors:["#2c6e91","#3f8fb0","#7d5ba6","#6aa8c4","#9ec3d6","#8893a0","#c4ccd3","#b03a2e","#d9694f","#d68910"]},
+      major:{data:B.expCategories,order:["Education","Public Safety & EMS","Jail / Detention","Human Services","General Government","Community & Debt","Other / smaller depts","ARPA → Public Safety","ARPA → Jail","ARPA → General Gov't","COVID/CARES → Health & other"],colors:["#2c6e91","#3f8fb0","#7d5ba6","#6aa8c4","#9ec3d6","#8893a0","#c4ccd3","#b03a2e","#6c3483","#d9694f","#d68910"]},
       detail:{data:B.expDept,order:dord(B.expDept),colors:dord(B.expDept).map((_,i)=>PAL[i%PAL.length])}},
     rev:{noun:"Revenue",
       major:{data:B.revenue,order:["Property tax","Sales tax","Fund balance (savings)","Jail fees (federal inmates)","Other revenue","COVID/ARPA (one-time)"],colors:["#2c6e91","#3f8fb0","#d68910","#7d5ba6","#9ec3d6","#c0392b"]},
@@ -294,7 +294,7 @@
   const hidden=new Set();   // category labels hidden via legend — persists across Show/Level/Adjust/View
   function S(){ return SRC[src][level]; }
   function noun(){ return SRC[src].noun; }
-  const stackMap={"ARPA → Public Safety":"Public Safety & EMS","ARPA → General Gov't":"General Government","COVID/CARES → Health & other":"Human Services"};
+  const stackMap={"ARPA → Public Safety":"Public Safety & EMS","ARPA → Jail":"Jail / Detention","ARPA → General Gov't":"General Government","COVID/CARES → Health & other":"Human Services"};
   function factor(i){ return (perCap?1/B.population[i]:1)*(infl?B.cpiBase/B.cpi[i]:1); }
   const bIdx=Math.max(0,B.years.indexOf("FY19-20"));   // "$ change vs 2019" anchors to FY2019-20, not the first column
   function val(k,i){ const a=S().data[k];

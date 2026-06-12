@@ -33,6 +33,10 @@
   tr.total td{font-weight:800;background:#f7fafc}
   tr.sub td:first-child{padding-left:22px;color:var(--muted);font-weight:400}
   tr.flag td{background:#fff5f4}
+  table.lt{min-width:560px}
+  table.lt th,table.lt td{text-align:left;white-space:normal;vertical-align:top}
+  .no{color:var(--red);font-weight:700}.yes{color:var(--green);font-weight:700}
+  .callout.good{border-left-color:var(--green);background:#eefbf3}
   .up{color:var(--red);font-weight:700}
   .callout{border-left:4px solid var(--navy);background:#eef6fb;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14px}
   .callout.warn{border-left-color:var(--warn);background:#fffaf0}
@@ -44,6 +48,7 @@
   footer{padding:28px 18px 70px;color:var(--muted);font-size:13px}
   footer a{color:var(--navy)}
   .chart-box{position:relative;height:380px}
+  .newbadge{position:absolute;top:0;right:4px;z-index:6;font-weight:800;color:var(--red);font-size:12.5px;background:rgba(255,255,255,.92);padding:1px 7px;border-radius:6px;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.12);letter-spacing:.3px}
   @media(max-width:600px){.chart-box{height:320px}}
   .toggles{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
   .toggles button{border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:13px;padding:7px 12px;border-radius:9px;cursor:pointer}
@@ -120,11 +125,35 @@
     <button id="resetBtn">↺ Reset</button>
     <button id="expTblBtn">▦ Table</button>
   </div>
-  <div class="card"><div class="chart-box"><canvas id="cExp"></canvas></div></div>
+  <div class="card"><div class="chart-box"><span class="newbadge">★ NEW! 6/11/26</span><canvas id="cExp"></canvas></div></div>
   <div id="expTableWrap" class="scroll" style="display:none"></div>
-  <p class="note"><strong>Level → Detailed</strong> breaks the majors into every department / revenue line — then <strong>click legend items to isolate</strong> the ones you're investigating (selections persist; ↺ Reset clears them). Best paired with <strong>$ change vs 2019</strong>. Covers <strong>FY2016-17 → FY2025-26</strong>. With <strong>Per resident + Inflation-adjusted</strong> on (the default), the honest shape is: the General Fund <strong>total is roughly flat in real per-resident terms</strong> — the real story is the <strong>mix shifting</strong> (the Jail and General Government grew while other areas held). The <strong>Jail / Detention</strong> (purple) is now its <em>own</em> category, pulled out of Public Safety, so you can see it separately. The <strong>FY2025-26 spending bars are faded</strong> (provisional estimate). Per-resident uses <strong>OSBM certified population — 12,990 in 2024</strong> (up only <strong>~2% from 2019</strong>; a 2020 Census-year dip makes growth measured from 2020 look like ~6%); inflation-adjusted uses CPI-U — both approximate. Exact figures via ▦ Table and the <a href="documents.html">source budgets</a>.</p>
+  <p class="note"><strong>Level → Detailed</strong> breaks the majors into every department / revenue line — then <strong>click legend items to isolate</strong> the ones you're investigating (selections persist; ↺ Reset clears them). Best paired with <strong>$ change vs 2019</strong>. Covers <strong>FY2016-17 → FY2026-27</strong> (the last column, FY2026-27, is the <strong>proposed</strong> budget — see the note below the chart). With <strong>Per resident + Inflation-adjusted</strong> on (the default), the honest shape is: the General Fund <strong>total is roughly flat in real per-resident terms</strong> — the real story is the <strong>mix shifting</strong> (the Jail and General Government grew while other areas held). The <strong>Jail / Detention</strong> (purple) is now its <em>own</em> category, pulled out of Public Safety, so you can see it separately. The <strong>FY2025-26 (estimate) and FY2026-27 (proposed) spending bars are faded</strong> to flag they aren't final actuals. Per-resident uses <strong>OSBM certified population — 12,990 in 2024</strong> (up only <strong>~2% from 2019</strong>; a 2020 Census-year dip makes growth measured from 2020 look like ~6%); inflation-adjusted uses CPI-U — both approximate. Exact figures via ▦ Table and the <a href="documents.html">source budgets</a>.</p>
   <div class="callout warn"><strong>Scope &amp; honesty note:</strong> this is the <strong>General Fund</strong> (~$27M operating). The <strong>Jail / Detention (purple)</strong> is shown as its own category on <em>both</em> Spending and Revenue, because it's largely a <strong>federal-inmate revenue business</strong> (the county houses U.S. Marshals inmates) — compare its <strong>spending bar to its "Jail fees" revenue bar</strong> to read the <strong>net</strong> county cost; the county's own budget never links the two. Switch <strong>Show → Revenue</strong> to see the <strong>fund-balance "savings" draw</strong> (amber). One-time COVID/ARPA money is split into the categories it funded (red), on top of the structural budget. <strong>The honest takeaway</strong> (try <strong>$ change vs 2019</strong>): real per-resident <em>total</em> spending is roughly flat — but the mix shifted toward the <strong>Jail</strong> and <strong>General Government</strong>. A big engine of that overhead growth: the county's <strong>covered payroll grew ~39% since FY2020</strong> (to $8.4M) while population rose only ~2% since 2019 (a 2020 Census-year dip inflates the 2020-based figure) — so personnel-driven lines (salaries, plus the pensions and health insurance charged <em>per employee</em>) climbed across General Government and the Sheriff's office alike. That's a hiring-and-pay choice, not a mandate. Other funds (Water ~$3.5M, the $10M+ Kershaw plant, grants) sit outside this General-Fund view.</div>
   <p class="note"><strong>Connections worth weighing</strong> (public record, not findings of wrongdoing): several officials have ties to the fastest-growing departments — Chair <strong>Ken Heath</strong> is a former sheriff's deputy / reserve officer; Commissioner <strong>Doug Brinson</strong> is a retired NC SBI agent and former school-board member; and <strong>Sheriff Chris Davis's</strong> spouse previously served as the county's Tax Administrator and ran for a commission seat (2024). On the record, the most recent property-tax increase drew "no" votes from Vice-Chair <strong>Ed Riggs (R)</strong> and <strong>Carl Ollison (D)</strong>. Sources: county roster, County Compass, Branch.vote / NCSBE.</p>
+  <div class="callout warn" id="fy2627"><strong>About the FY2026-27 column (proposed):</strong> these are the County Manager's <strong>recommended</strong> figures (presented June 1, 2026), not yet adopted — the public hearing is June 15. We feature the <strong>52.0¢</strong> rate the county's own presentation uses (the written budget message recommended <strong>50.5¢</strong>; revenue-neutral is <strong>43.75¢</strong>). Two honest adjustments so the bars compare fairly to prior years:
+    <ul class="clean" style="margin:8px 0 6px">
+      <li><strong>Central Fleet ($493,550)</strong> is a <em>new</em> internal-service line that pooled vehicle costs (insurance, leases, upfits) that <strong>used to sit inside departments</strong> — mostly patrol/jail/EMS. We folded it back into <strong>Public Safety &amp; EMS</strong> so that category stays comparable; it does not change the total.</li>
+      <li>The new <strong>$1.0M "Non-Departmental / Contingency"</strong> stays inside <strong>"Other"</strong> (prior years' coarse "Other" also absorbed transfers/contingency, so this keeps the bar comparable). Its four parts are worth knowing: <strong>$475,000 transferred to Capital Reserve (i.e., into savings), $350,000 for the 3% COLA, $100,000 unexpected-expense cushion, $75,000 career development.</strong> Note the irony: they budget a windfall and route <strong>$475K of it straight into reserves</strong> — the same reserves they say need rebuilding.</li>
+    </ul>
+    The honest top line: the proposed General Fund is <strong>~$30.1M, up ~11% over FY2025-26</strong> (a real ~$2M operating increase once you set aside the reserve transfer and reclassifications), and it <strong>adds recurring positions</strong> — 2 courthouse-security deputies, an IT tech, a housekeeper, a Medicaid caseworker, a health educator, more jailers — plus a <strong>3% COLA</strong>, in a revenue-neutral reappraisal year. <strong>It's proposed, not adopted</strong> — and this county's seven-year record is to pad budgets and under-spend, so actual FY26-27 will likely land lower.</div>
+  <h3 style="font-size:17px;margin:20px 0 6px;font-weight:800">The county's own FY2026-27 budget, by function</h3>
+  <p class="note" style="margin:0 0 6px">Straight from the recommended budget (deck "General Fund Summary," presented 6-1-2026). "Net county cost" = the function's spending minus the outside revenue (grants, fees, state/federal aid) that offsets it — i.e., what local taxes actually carry.</p>
+  <div class="scroll"><table style="min-width:520px">
+    <thead><tr><th>Function</th><th>Recommended</th><th>Net county cost</th></tr></thead>
+    <tbody>
+      <tr><td>Public Safety</td><td>9,006,695</td><td>7,298,595</td></tr>
+      <tr><td>Education</td><td>6,104,900</td><td>5,145,900</td></tr>
+      <tr><td>Human Services</td><td>5,828,215</td><td>2,111,403</td></tr>
+      <tr><td>General Government</td><td>5,493,180</td><td>5,187,230</td></tr>
+      <tr><td>Non-Departmental / Contingency</td><td>1,000,000</td><td>1,000,000</td></tr>
+      <tr><td>Debt Service</td><td>727,700</td><td>642,700</td></tr>
+      <tr><td>Economic &amp; Physical Development</td><td>677,010</td><td>318,710</td></tr>
+      <tr><td>Cultural &amp; Recreation</td><td>640,025</td><td>634,025</td></tr>
+      <tr><td>Environmental Protection</td><td>613,750</td><td>529,860</td></tr>
+      <tr class="total"><td>Total</td><td>30,091,475</td><td>22,868,423</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Funding: Non-departmental/countywide revenues $21,550,060 (71.6%) · Departmental/function revenues $6,179,052 (20.5%) · Education-dedicated $1,044,000 (3.5%) · fund-balance appropriation $1,318,363 (4.4%). Property tax at 52.0¢ ≈ $16.75M (1¢ = $322,115 on a $3.22B base). Source: <a href="documents.html">FY2026-27 Budget Message &amp; Presentation</a>.</p>
 </section>
 
 <section>
@@ -160,6 +189,31 @@
 </section>
 
 <section>
+  <div class="kicker">The hiring spree</div>
+  <h2>New jobs added — on money they didn't have</h2>
+  <p class="lead">Pull the meeting minutes year by year and a pattern jumps out: the county <strong>kept adding positions and raises</strong> — and after the ARPA cushion was committed, it funded them with <strong>one-time money</strong>: reserves, "lapsed" (vacant) salaries, grants, and in one year by <strong>cutting another service</strong>. None of it required a separate public vote — these were approved inside budget ordinances and routine "budget amendments." A flat-population county does not need a steadily growing payroll; every recurring job added is a cost the reval windfall now has to carry.</p>
+  <div class="scroll"><table class="lt" style="min-width:640px">
+    <thead><tr><th>When</th><th>Position / pay action (department)</th><th>Cost</th><th>How it was paid for</th></tr></thead>
+    <tbody>
+      <tr><td>2021-23</td><td>Steady additions: Sheriff Deputy→Investigator ($45k), Deputy II ($42k ×2), 3 School Resource Officers, Communicable-Disease Nurse, new admin/field positions; a <strong>pay-classification study</strong> whose Phase 1 (Sheriff + DSS) alone added <strong>$213,104</strong></td><td>various</td><td>Budget ordinances; fund balance; grants</td></tr>
+      <tr><td>2024</td><td>New <strong>NC Fellows economic-development</strong> position (county match)</td><td>≤$10k/yr match</td><td>Approved <strong>6:1</strong> (Baskervill no); source not stated</td></tr>
+      <tr><td>2024</td><td>Finance Officer reclassed <strong>+10%</strong>; a mid-year salary package</td><td>+$181,590 annualized</td><td>Source not stated</td></tr>
+      <tr><td>Feb 3, 2025</td><td><strong>County Manager salary set to $120,000 + $7,000 travel</strong> (Brewington, on appointment)</td><td>$127,000 recurring</td><td>Source not stated</td></tr>
+      <tr><td>2025</td><td><strong>Floodplain Administrator</strong> (new FT); <strong>Grant Administrator</strong> (new); <strong>General Services Administrator</strong> (new, Grade 32); <strong>new full-time Animal Control Officer</strong>; Payroll/HR Administrator reclass</td><td>Grant Admin range $53,661–$95,254; HR Admin $49,480→$55,000</td><td>Source not stated in minutes</td></tr>
+      <tr><td>2025</td><td><strong>Water Dept reorganization</strong> — up to <strong>12 positions</strong> authorized (1 admin, 3 operators, 1 driver, 7 field)</td><td>—</td><td>Water rate &amp; fee increase (same meeting)</td></tr>
+      <tr><td>2025</td><td>Advanced Practice Provider (Health) pay raised <strong>$80k→$90k</strong>; multi-county <strong>Task Force Officer</strong></td><td>+$10k; officer "from lapsed salaries"</td><td>5:1 (Brinson no) / vacant-salary money</td></tr>
+      <tr class="flag"><td>Jun 2025</td><td>Mid-year top-ups incl. <strong>Inspections salaries +$30,000</strong> "to cover unexpected YTD costs"</td><td>$30,000</td><td><strong>Fund Balance (reserves)</strong> — one-time money for payroll</td></tr>
+      <tr><td>Jan 2026</td><td>Sheriff <strong>Traffic Safety Deputy</strong> (new)</td><td>county ~$24,349 yr 1</td><td>Governor's Highway Safety <strong>grant</strong> (3-yr tiered match)</td></tr>
+      <tr class="flag"><td>Apr 2026</td><td><strong>Jail salary adjustment</strong></td><td>~$137,239</td><td>Approved <strong>5:1</strong> (Bohmert the lone no)</td></tr>
+      <tr class="flag"><td>Feb–May 2026 (budget mtgs)</td><td>Recurring spending discussed openly <em>during</em> the windfall budget: <strong>Feb 9</strong> "current vacant positions" + FY27 process; <strong>Apr 15</strong> Sheriff Davis presents "jail staffing crisis, pay disparity… and <strong>additional positions</strong>"; <strong>May 6</strong> itemized new-position list + <strong>COLA</strong> + Career Development</td><td>see below</td><td>Discussion → built into the proposal</td></tr>
+      <tr class="flag"><td>FY2026-27 request</td><td>Health Educator · IT Assistant · B&amp;G Housekeeping · DSS Intake Caseworker · Sheriff Courthouse Security · COLA · Career-Development program · <strong>Sheriff pay "compensation / inequity"</strong></td><td><strong>$1,215,299.88</strong> in personnel-adjustment requests</td><td>Proposed in a <strong>revenue-neutral reval year</strong> — i.e., the windfall</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><strong>So what paid for the jobs after the federal money was gone? Mostly one-time and borrowed-against sources:</strong> the FY2024-25 budget raised the rate to 64.5¢ <em>and</em> appropriated fund balance to balance; mid-year hires were drawn straight from <strong>reserves</strong>; new deputies were pushed onto <strong>grants</strong> ("seeking <em>any</em> type of grant funding" for 5 requested Sheriff positions, Nov 2025); and to balance FY2025-26 the board initially <strong>cut the Rescue Squad</strong>, then partly restored it (+$97,000) by <strong>cutting a Sheriff vehicle</strong> and financing the rest. By Feb 9, 2026 the Finance Officer projected the year-end fund balance <strong>negative in every scenario (−$300K to −$756K)</strong>. That's the definition of unsustainable: recurring jobs stacked on money that runs out — and the reval windfall is the bill.</div>
+  <p class="note">Source: Pamlico BOC minutes &amp; budget amendments, 2021–2026 (county CMS). "Source not stated" means the position was approved inside a budget ordinance/attachment that the minutes don't itemize. Full working notes in the project's <code>RESEARCH_minutes_arc_2020-2026.md</code>.</p>
+</section>
+
+<section>
   <div class="kicker">The COVID-money question</div>
   <h2>Where the ARPA / federal pandemic money went</h2>
   <p class="lead">The pandemic money rose from $0 to a roughly <strong>$2.9M peak in FY2022-23</strong>, then fell back to ~$0 — <strong>no standalone "COVID program" survived</strong>. The subtler move: the county took its <strong>~$2.47M of ARPA as "revenue replacement"</strong> and spent it covering <strong>ordinary department salaries</strong> for one year. That freed up an equal amount of <em>local</em> money, which was <strong>banked in fund balance</strong> — and is now being drawn down ~$2M/year. That parked savings is the through-line from COVID relief to today's "we need a windfall."</p>
@@ -168,6 +222,25 @@
   <h3 style="font-size:17px;margin:20px 0 6px;font-weight:800">Where the FY2022-23 ARPA actually went: normal salaries</h3>
   <div class="card"><div class="chart-box" style="height:300px"><canvas id="cArpaDept"></canvas></div></div>
   <div class="callout warn"><strong>The mechanism:</strong> when federal dollars pay this year's salaries, local tax dollars are freed up — and here they were <strong>banked, not returned to taxpayers</strong>. When the ARPA ran out, the payroll stayed on the local levy and the banked savings began draining. <em>Which positions were ARPA-seeded and are now locally funded?</em> — a top investigation lead. (Base-pay shown; ARPA also covered OT, FICA, retirement &amp; insurance on top.)</div>
+  <h3 style="font-size:17px;margin:22px 0 6px;font-weight:800">How the money moved: the decisions, in order</h3>
+  <p class="note" style="margin-bottom:6px">Straight from the minutes — this is how a one-time relief grant became a permanent payroll commitment, and how the "freed-up" local cash was spent.</p>
+  <div class="scroll"><table class="lt" style="min-width:660px">
+    <thead><tr><th>Date</th><th>Decision (who moved it)</th><th>What it actually did</th></tr></thead>
+    <tbody>
+      <tr><td>Jun 15, 2020</td><td>CARES / Coronavirus Relief Fund ordinance</td><td>$457,056 in federal relief — <strong>$300,000 booked to "Salaries,"</strong> $157,056 to supplies. A part-time Senior Services job was also made full-time on COVID money.</td></tr>
+      <tr><td>Jun 7, 2021</td><td>ARPA Project Ordinance</td><td>The county's full <strong>$2,471,876</strong> ARPA award booked — parked 100% in <strong>contingency</strong> (nothing committed yet).</td></tr>
+      <tr><td>Aug 2, 2021</td><td>ARPA spending policy</td><td>Board says ARPA will prioritize <strong>broadband, water, sewer</strong> (one-time infrastructure) and "the full board will decide." <em>Good intentions.</em></td></tr>
+      <tr class="flag"><td>Apr 18, 2022</td><td>moved by Bohmert, 2nd Baskervill — <strong>unanimous</strong></td><td><strong>The pivot.</strong> Elected the ARPA <strong>"standard allowance / revenue replacement"</strong> for <strong>all ~$2.4M</strong> — "this supersedes any other action designating use of ARPA funds." Converts it to fungible "government services" money.</td></tr>
+      <tr class="flag"><td>May 16, 2022</td><td>ARPA Project Ordinance (revised)</td><td>Allocated the $2,471,876 to <strong>recurring salaries &amp; benefits</strong>: <strong>$2.2M law enforcement</strong> (Sheriff/Jail/Dispatch) + $75K Emergency Mgmt + $196,876 administration.</td></tr>
+      <tr class="flag"><td>Sep 6, 2022</td><td>budget amendments</td><td>Moved <strong>$500,000 out of the Sheriff salary line</strong> to "ARPA Special Board Projects… for sewer expansion," and transferred the full <strong>$2,471,876 ARPA → General Fund</strong>, spread across department salary lines. Local dollars freed; ARPA now pays the payroll.</td></tr>
+      <tr><td>late 2022–2023</td><td>repeated budget amendments</td><td>"To <strong>redistribute ARPA monies to cover overtime</strong> / FICA" in Sheriff, Jail, Dispatch — ARPA backfilling routine recurring costs.</td></tr>
+      <tr><td>Jan 17, 2023</td><td>BA #23-080</td><td>Moved <strong>$1,971,876</strong> into "Special Board Projects ARPA," explicitly "from excess budgets created via <strong>revenue replacement of expense lines</strong>" in Sheriff/Jail/Dispatch/EM/Finance/HR/Manager.</td></tr>
+      <tr><td>2023</td><td>Health Dept</td><td>Nurse-practitioner hours added with "salary to be <strong>paid using ARPA funds</strong>"; staff note: "trying to get all ARPA $$ allocated, so that we do not lose any."</td></tr>
+      <tr><td>Jun–Jul 2024</td><td>NCDIT Broadband ordinance</td><td>Broadband county match (~$295,164) funded from "<strong>Fund Balance as a result of ARPA Funds used for Revenue Replacement</strong>" — i.e., spending the local cash ARPA had freed.</td></tr>
+      <tr><td>Jan 2025</td><td>Budget retreat</td><td>~<strong>$1.9M still "restricted for BOC-directed ARPA uses"</strong> — the parked savings, now being drawn down.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout red"><strong>The through-line in one sentence:</strong> the county spent its one-time federal relief on <strong>recurring salaries</strong>, banked the equal amount of local money it freed up, spent some of that on sewer/broadband — and when the ARPA ran out, the salaries stayed on the local tax levy. That is the machine that manufactured today's "we need a permanent windfall."</div>
 </section>
 
 <section>
@@ -178,6 +251,44 @@
     <p class="note">Bars: net change in General-Fund balance each year (green = added to savings, red = drew down). Line: available (unassigned) reserves as % of spending — the LGC's key health metric. Reserves rose from 25.7% (2019) to a 39.6% peak (2023), then eased to 33.3% (2025) — still <strong>~4× the LGC's 8% benchmark</strong> and about four months of operating costs. Source: Pamlico audited financial statements, FY2019-FY2025.</p>
   </div>
   <div class="callout"><strong>The point:</strong> two modest reserve-draw years don't make a county "broke," and they don't justify a <em>permanent</em> tax windfall. Reserves are exactly what you spend in lean years; you refill them with one-time money and cost control — not by locking in higher taxes forever.</div>
+</section>
+
+<section id="budget-discipline">
+  <div class="kicker">Budget discipline</div>
+  <h2>The adopted budget isn't a ceiling — and the "reserve draw" never actually happens</h2>
+  <p class="lead">This is straight from the county's own <strong>audited</strong> financial statements (the Budgetary Comparison Schedule, FY2019–FY2025) — the most authoritative numbers there are. Two findings cut right through the "we're broke, we need a windfall" message.</p>
+
+  <h3 style="font-size:17px;margin:18px 0 6px;font-weight:800">1. Every year they budget a big "reserve draw" to balance the budget — and every year they use $0 of it</h3>
+  <div class="scroll"><table style="min-width:520px">
+    <thead><tr><th>Fiscal year</th><th>Reserve draw budgeted (final)</th><th>Actually used</th><th>What happened to reserves</th></tr></thead>
+    <tbody>
+      <tr><td>FY2019</td><td>$3,499,076</td><td class="yes">$0</td><td>grew</td></tr>
+      <tr><td>FY2020</td><td>$2,691,874</td><td class="yes">$0</td><td>grew</td></tr>
+      <tr><td>FY2021</td><td>$3,230,762</td><td class="yes">$0</td><td>grew</td></tr>
+      <tr><td>FY2022</td><td>$2,289,050</td><td class="yes">$0</td><td>grew</td></tr>
+      <tr><td>FY2023</td><td>$3,300,816</td><td class="yes">$0</td><td><strong>added $1.99M</strong></td></tr>
+      <tr><td>FY2024</td><td>$5,397,608</td><td class="yes">$0</td><td>grew</td></tr>
+      <tr><td>FY2025</td><td>$2,311,845</td><td class="yes">$0</td><td>grew</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout red"><strong>Seven years in a row</strong>, the county budgeted a fund-balance "draw" of up to <strong>$5.4M</strong> to make the budget look like it needed the money — and drew <strong>$0</strong> every single time. Reserves <em>grew</em> from <strong>$8.84M (2019) to $11.31M (2025)</strong>. So when the FY2026-27 pitch says it must tap nearly the entire ~$8.4M reserve, remember: <strong>on the seven-year record, the budgeted reserve draw is a paper device that never happens.</strong> That's the cleanest reason to distrust a "we have no choice but a windfall" argument.</div>
+
+  <h3 style="font-size:17px;margin:22px 0 6px;font-weight:800">2. The board-adopted budget gets amended up 8–25% every year</h3>
+  <div class="scroll"><table style="min-width:560px">
+    <thead><tr><th>Fiscal year</th><th>Original (adopted)</th><th>Final (amended)</th><th>Added mid-year</th><th>Actual spent</th></tr></thead>
+    <tbody>
+      <tr><td>FY2019</td><td>19,280,014</td><td>21,990,596</td><td class="up">+2,710,582</td><td>19,838,304</td></tr>
+      <tr><td>FY2020</td><td>19,935,631</td><td>22,928,355</td><td class="up">+2,992,724</td><td>20,637,651</td></tr>
+      <tr><td>FY2021</td><td>20,853,170</td><td>24,887,809</td><td class="up">+4,034,639</td><td>21,028,080</td></tr>
+      <tr><td>FY2022</td><td>22,806,413</td><td>26,408,221</td><td class="up">+3,601,808</td><td>21,972,864</td></tr>
+      <tr><td>FY2023</td><td>23,882,107</td><td>29,907,457</td><td class="up">+6,025,350</td><td>24,143,664</td></tr>
+      <tr><td>FY2024</td><td>24,880,871</td><td>29,796,931</td><td class="up">+4,916,060</td><td>25,167,944</td></tr>
+      <tr><td>FY2025</td><td>25,795,429</td><td>27,911,371</td><td class="up">+2,115,942</td><td>25,345,149</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Over seven years the county added <strong>~$26.4M</strong> of mid-year spending authority on top of its adopted budgets — and in most years <em>actual</em> spending ran <strong>above the originally adopted total</strong>, which is exactly why the budget had to be raised mid-year. The adopted budget doesn't bind.</p>
+  <div class="callout warn"><strong>Which departments?</strong> Nearly <em>every</em> operating function is padded upward every year — the heaviest and most repeated on <strong>General Government</strong> and <strong>Economic &amp; Physical Development</strong> (revised up <strong>+60% to +154%</strong> in multiple years), which then spend as little as <strong>58–62%</strong> of the inflated ceiling. The one exception is <strong>Education</strong> — a legally-fixed pass-through to the schools — which is amended ~0% every year. That contrast is the tell: the padding elsewhere is a <strong>management choice</strong>, not a quirk of the process. It shows up in the minutes as the annual June/July batch of amendments labeled, verbatim, <em>"To increase Budgets to ensure Year End integrity,"</em> funded by drawing fund balance and interest — the repeat departments being Water, Sheriff/Jail, Health, DSS, Tax/Reappraisal, Recycling, Senior Services and Finance.</div>
+  <p class="note"><strong>In fairness:</strong> actual total spending stays at 81–91% of the <em>final</em> budget — they don't blow past the amended ceiling, and most years run a small operating deficit. The precise, unkillable claim is narrower and damning enough: <strong>the original, board-adopted budget is treated as non-binding, and the reserve draw used to justify it is fictional.</strong> Source: Pamlico County audited financial statements FY2019–FY2025, General Fund Budgetary Comparison Schedule (Exhibit 6), on the <a href="documents.html">Documents</a> page.</p>
 </section>
 
 <section>
@@ -220,7 +331,7 @@
   <h2>Areas under investigation <span class="wip">work in progress</span></h2>
   <p class="lead">The leads below are where the digging continues. Have a document, a number, or local knowledge? Send it via <a href="get-involved.html">Get Involved</a>.</p>
   <ul class="clean">
-    <li><strong>The full $8.4M fund-balance drawdown.</strong> The FY2026-27 proposal reportedly taps nearly the entire available reserve. Compare <em>appropriated</em> vs. <em>actually spent</em> fund balance each year — does the county routinely budget a draw it never uses (manufacturing a sense of "need")?</li>
+    <li><strong>The full $8.4M fund-balance drawdown — <span style="color:var(--green)">ANSWERED</span>.</strong> We asked whether the county routinely budgets a reserve draw it never uses, manufacturing a sense of "need." The audits say <strong>yes: seven years straight it budgeted a draw (up to $5.4M) and used $0</strong>, while reserves grew to $11.3M. See <a href="#budget-discipline">"The adopted budget isn't a ceiling"</a> above.</li>
     <li><strong>IT (+115%), Dispatch (+74%), Sheriff (+62%).</strong> Pull contracts and the position/pay plan. Which jumps are software/vendor contracts vs. ARPA-seeded positions now on local money?</li>
     <li><strong>Governing Body (+73%) &amp; the $2.47M "ARPA Special Programs."</strong> Exactly what did this buy?</li>
     <li><strong>The jail economics.</strong> The federal-inmate operation appears to roughly cover its own cost (the ~$1.1M in fees ≈ its share of spending) — <em>not</em> waste. The real question is the <strong>local/state-inmate share</strong>: it's grown with total jail spending (to ~$2.5M) even though the federal fees fell ($1.3M→$1.1M). What's driving the local side — staffing, medical, food contracts? (Confirm the federal-vs-local inmate mix with the Sheriff; our ~40% split is an estimate.)</li>
@@ -261,8 +372,48 @@
   <div class="card"><div class="chart-box"><canvas id="cJailNet"></canvas></div>
     <p class="note">Detention Center (cost center 4320) spending, <strong>split by who's in the beds</strong>, vs. the federal-inmate bed-lease revenue. The county houses roughly <strong>40–60 U.S. Marshals inmates a day</strong> out of an average <strong>~105 total (capacity 108)</strong> — about <strong>40%</strong> of the jail — and the feds pay <strong>~$80 per inmate per day</strong> (that's a dollar rate, not a headcount), worth <strong>~$1.1M/yr</strong>. We split the purple spending bar by that ~40% / ~60% inmate share — an <strong>estimate</strong> (it assumes a federal inmate costs the same per day as a local one, and the exact mix isn't published), so <strong>don't read the thin year-to-year gaps as a precise profit or loss</strong>. The honest read is only directional: the <strong>federal share (purple) is roughly matched by the federal fees (green)</strong> — that operation broadly pays its own way, it's a revenue program, <em>not</em> waste — while the <strong>local/state share (gray) is the mandated cost on county taxpayers</strong>, and it's the part that's grown. Most peers run nothing like this (Jones: a 21-bed courthouse-basement lockup; Perquimans: a regional jail), so peer "public-safety" comparisons that don't separate the jail are apples-to-oranges. Sources: FY2025-26 budget message; <a href="https://www.prisonpolicy.org/reports/jails_immigration_appendix4.html" target="_blank" rel="noopener">Prison Policy Initiative</a>.</p>
   </div>
+  <h3 style="font-size:17px;margin:20px 0 6px;font-weight:800">The jail in 2026: revenue dipping while the asks pile up</h3>
+  <p class="lead" style="font-size:15px">The 2026 budget minutes show the jail business is no longer the reliable money-maker it was sold as — even as the Sheriff's asks for jail dollars and positions grow.</p>
+  <div class="callout warn">
+    <p style="margin:0 0 8px"><strong>Feb 9, 2026</strong> — Finance Officer to the board: "<em>Jail Revenue has recovered but it is not currently generating an excess to make up for prior months.</em>" In other words, the federal-inmate operation is back on its feet but <strong>not throwing off the surplus</strong> the budget had leaned on.</p>
+    <p style="margin:0"><strong>Apr 15, 2026</strong> — the Manager invited Sheriff Davis to present on the "<em>jail staffing crisis, pay disparity, proposed salary solution, jail revenue, jail capital needs, courthouse security, and additional positions.</em>" Nearly every item on that list is a <strong>new cost</strong>.</p>
+  </div>
+  <p style="font-size:14px;margin:10px 0 4px">What the jail has been costing taxpayers, from the minutes:</p>
+  <ul class="clean" style="font-size:14px">
+    <li><strong>Salaries are climbing.</strong> A <strong>~$137,239 jail salary adjustment</strong> was approved Apr 20, 2026 (5:1, Bohmert the lone no); by May 18 the Sheriff said it "<em>helped and was able to fill 4 vacancies.</em>" The FY2026-27 ask also includes Sheriff "<strong>pay compensation / inequity</strong>" and courthouse-security positions.</li>
+    <li><strong>One-off costs keep hitting reserves.</strong> $150,000 pulled from fund balance to Jail Contracted Services "<em>due to unexpected medical costs</em>" (May 2025); a $53,100 settlement payment (Jan 2026); $64,400 for "<em>cost of negotiating the federal contract</em>" (2023).</li>
+    <li><strong>Capital asks.</strong> The jail <strong>security system needs replacing</strong> (additional bids authorized May 18, 2026); the county spent <strong>$240,615</strong> replacing 48 cell-door locks (2023) and <strong>$65,688</strong> on a jail water heater (2022).</li>
+    <li><strong>The revenue it's measured against:</strong> the budget books roughly <strong>$1.1–1.125M</strong> in federal inmate-lease fees; in 2023 the board voted to raise leased federal beds from 35 to 55 to chase <strong>+$526,000</strong> more — which makes county finances dependent on a <strong>federal-inmate population it doesn't control</strong>.</li>
+  </ul>
+  <div class="callout"><strong>The jail question, updated:</strong> the federal business still roughly covers its own share of the cost — but it's <strong>volatile</strong> (a bad stretch leaves the county exposed, as Feb 2026 shows), and the <strong>local/state-inmate side keeps growing</strong> on salaries, medical, settlements and capital. Tying the county's budget to a swingy federal-inmate revenue stream, then asking taxpayers for a windfall when it dips, is exactly the fragility worth questioning.</div>
   <div class="callout"><strong>The honest verdict on the Sheriff.</strong> Not over-policing — patrol ≈ peers and crime is down. The big "public safety" number is inflated by a <strong>federal-inmate jail business</strong> (much of its cost is offset by federal revenue — see the bars above). The real thing to explain is the <strong>Sheriff-proper personnel cost more than doubling</strong> while patrol stayed flat: that's where to ask "<strong>positions or raises?</strong>" and pull the pay plan. It's the same overhead-growth pattern as <strong>General Government</strong> — the place to look, not the deputies on the road.</div>
   <p class="note"><strong>Honesty flags:</strong> for a county this small a single incident swings the "rate," so read multi-year trends. Sworn-officer counts (~21–26) come from NC SBI personnel data and vary by source/year; the Sheriff-vs-jail staffing split is estimated from the budget (detention officers are civilian). <strong>Sources:</strong> <a href="https://cde.ucr.cjis.gov/" target="_blank" rel="noopener">FBI CDE</a>, <a href="https://www.ncsbi.gov/Services/Crime-Statistics/Crime-in-North-Carolina-Annual-Summaries" target="_blank" rel="noopener">NC SBI</a>, <a href="https://policescorecard.org/nc/sheriff/pamlico-county" target="_blank" rel="noopener">Police Scorecard</a>, <a href="https://www.prisonpolicy.org/reports/jails_immigration_appendix4.html" target="_blank" rel="noopener">Prison Policy Initiative</a>.</p>
+</section>
+
+<section>
+  <div class="kicker">Accountability</div>
+  <h2>The voting record: who moved what</h2>
+  <p class="lead">The decisions that built the budget and set up the windfall are on the record — with names. Below are the budget, tax-rate, ARPA, revaluation and Sheriff/jail votes, who <strong>made the motion</strong>, and how it carried. Most passed <strong>unanimously</strong>; the split votes show who, if anyone, pushed back. <span class="note">(The board changed in Dec 2024 — Heath and Mills replaced Baskervill and Prescott — so motions before 2025 are the prior board.)</span></p>
+  <div class="scroll"><table class="lt" style="min-width:680px">
+    <thead><tr><th>Date</th><th>Measure</th><th>Moved / 2nd</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>Jan 18, 2022</td><td>$110/mo cell-phone allowance for the Sheriff</td><td>—</td><td>Adopted <strong>3:2</strong> (<span class="no">Riggs, Ollison no</span>)</td></tr>
+      <tr><td>Apr 5, 2022</td><td>Hire a Sheriff Deputy ($42k) — revived after failing days earlier</td><td>—</td><td>Adopted <strong>5:1</strong> (<span class="no">Riggs no</span>)</td></tr>
+      <tr class="flag"><td>Apr 18, 2022</td><td>Put <strong>all ~$2.4M ARPA into "revenue replacement"</strong> (frees it to cover salaries)</td><td>Bohmert / Baskervill</td><td>Adopted <strong>unanimously</strong></td></tr>
+      <tr class="flag"><td>Nov 7 &amp; 21, 2022</td><td><strong>Advance the revaluation to Jan 1, 2026</strong> (the windfall trigger)</td><td>Baskervill / Bohmert</td><td>Adopted <strong>unanimously</strong></td></tr>
+      <tr><td>Jun 19, 2023</td><td>FY2023-24 budget (rate held 62.5¢)</td><td>Brinson / Prescott</td><td>Adopted <strong>5:2</strong> (<span class="no">Baskervill, Bohmert no</span>)</td></tr>
+      <tr class="flag"><td>Jun 12, 2024</td><td><strong>Set the tax rate at 64.5¢</strong> — the last rate increase</td><td>Baskervill / Bohmert</td><td>Adopted <strong>5:1</strong> (<span class="no">Riggs no</span>)</td></tr>
+      <tr class="flag"><td>Jun 17, 2024</td><td>Adopt the FY2024-25 budget at 64.5¢</td><td>Baskervill / Prescott</td><td>Adopted <strong>5:2</strong> (<span class="no">Riggs, Ollison no</span>)</td></tr>
+      <tr><td>Jul 15, 2024</td><td>New NC Fellows economic-development position</td><td>—</td><td>Adopted <strong>6:1</strong> (<span class="no">Baskervill no</span>)</td></tr>
+      <tr class="flag"><td>May 19, 2025</td><td><strong>Raise the reappraisal-fund levy .005→.007 (~$504K)</strong> — funds the reval machine</td><td>Bohmert / Mills</td><td>Adopted <strong>unanimously</strong></td></tr>
+      <tr><td>Jun 16, 2025</td><td>FY2025-26 budget — cut then partly restored Rescue (+$97K) by cutting a Sheriff vehicle</td><td>Bohmert / Brinson</td><td>Adopted <strong>unanimously</strong></td></tr>
+      <tr><td>Sep 2, 2025</td><td>Buy 5 Sheriff patrol cars</td><td>—</td><td>Adopted <strong>6:1</strong> (<span class="no">Bohmert no</span>)</td></tr>
+      <tr class="flag"><td>Apr 20, 2026</td><td>Jail salary adjustment (~$137,239)</td><td>Forrest / Brinson</td><td>Adopted <strong>5:1</strong> (<span class="no">Bohmert no</span>)</td></tr>
+      <tr class="flag"><td>Jun 8, 2026</td><td><strong>Advance the proposed 52.0¢ rate</strong> (raised from 50.5¢) — the current windfall</td><td>—</td><td>Advanced <strong>5:1</strong> (<span class="no">Heath, the Chair, the lone no</span>) <span class="note">— per community accounts; not yet in posted minutes</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>What the record shows:</strong> the votes that created the windfall — the ARPA revenue-replacement, advancing the reval, raising the reval levy, the 64.5¢ hike — carried with little or no dissent. The board has also <strong>consistently funded Sheriff/jail asks</strong> (a deputy hire, the cell allowance, five patrol cars, the $137K jail salary bump, courthouse-security positions), usually over a lone restraint vote from <strong>Riggs</strong> or <strong>Bohmert</strong>. The only across-the-board "no" votes on the <strong>last tax increase came from Riggs (R) and Ollison (D)</strong> — which is why "adopt the revenue-neutral rate" is a credible ask to put to <em>any</em> commissioner. <a href="get-involved.html">See who's up for election and contact them →</a></div>
+  <p class="note">Source: Pamlico BOC minutes, 2022–2026 (county CMS). "—" = the mover isn't recorded in the available minutes. The June 8, 2026 row reflects community/insider accounts; the June 8 budget-meeting minutes are not yet posted, so treat that one as reported-not-yet-documented.</p>
 </section>
 
 </main>
@@ -301,11 +452,11 @@
     if(view==="index"){ return Math.round(a[i]*factor(i) - a[bIdx]*factor(bIdx)); }
     return Math.round(a[i]*factor(i));
   }
-  const estIdx=B.years.indexOf("FY25-26");
+  const estIdx=B.years.indexOf("FY25-26"), propIdx=B.years.indexOf("FY26-27");
   function fade(hex){const c=hex.replace('#','');return "rgba("+parseInt(c.substr(0,2),16)+","+parseInt(c.substr(2,2),16)+","+parseInt(c.substr(4,2),16)+",0.4)";}
   function ds(){ return S().order.map((k,ci)=>{
     const base=S().colors[ci];
-    const bg=(src==="exp"&&estIdx>=0)?B.years.map((_,i)=>i===estIdx?fade(base):base):base;
+    const bg=(src==="exp")?B.years.map((_,i)=>(i===estIdx||i===propIdx)?fade(base):base):base;
     return {label:k,data:B.years.map((_,i)=>val(k,i)),backgroundColor:bg,borderWidth:0,hidden:hidden.has(k),stack:(src==="net"?"flow":(stackMap[k]||k))};
   }); }
   function money(v){ return perCap ? "$"+Math.round(v).toLocaleString() : "$"+(v/1e6).toFixed(2)+"M"; }

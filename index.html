@@ -131,7 +131,7 @@
 
 <div class="callout warn" style="border-left:5px solid #b03a2e;margin-top:4px"><strong>⚠️ UPDATE — the Commission just RAISED the rate.</strong> The proposed rate is now <strong>52.0¢</strong>, about a <strong>19% increase</strong> over the revenue-neutral 43.75¢ — not the ~16% floated days earlier. Watch the bait-and-switch: the "proposed" figure kept dropping to look reasonable — <strong>52.5¢ → 50.75¢ → 50.5¢</strong> — then jumped back up to <strong>52.0¢</strong> at the last minute. The low numbers were the head-fake.</div>
 
-<div class="callout" style="margin-top:4px"><strong>📅 Public hearing on the proposed FY2026-27 budget: Monday, June 15, 7:00 PM</strong> (Commissioners' Meeting Room, Courthouse Annex, 202 Main St, Bayboro) — be heard before the vote. How to speak &amp; what to say: <a href="get-involved.html#meetings">Get Involved</a>. <span style="opacity:.75">(Confirm with the Clerk, (252) 745-3133.)</span></div>
+<div class="callout" style="margin-top:4px"><strong>📅 The budget is being decided right now — and the schedule keeps moving.</strong> The Commission <strong>moved a budget meeting up to tonight (Thursday, June 11)</strong> with little notice; the <strong>June 15</strong> session is a <strong>regular meeting</strong> (with a public-comment period); and <strong>another budget meeting is set for June 29</strong>. The FY2026-27 budget is <strong>not yet adopted</strong> — show up, speak in public comment, and contact your commissioners before the final vote. How &amp; what to say: <a href="get-involved.html#meetings">Get Involved</a>. <span style="opacity:.75">(Confirm times with the Clerk, (252) 745-3133.)</span></div>
 
 <div class="callout good" style="margin-top:4px">💬 <strong>Thank you to the readers sending corrections and tips.</strong> Your feedback is being read and incorporated as it comes in — keep it coming via <a href="get-involved.html">Get Involved</a>. · <a href="comments.html">Read readers' comments →</a></div>
 
@@ -174,6 +174,7 @@
     </div>
     <div class="card"><h3 class="sub" style="margin-top:0">General-fund spending & property tax, by year</h3>
       <div class="chart-box"><canvas id="cGrowth"></canvas></div>
+      <p class="note" style="margin:6px 0 0">The <strong>FY2026-27</strong> bar (faded) is the <strong>proposed</strong> budget — about <strong>$30.1M</strong> in spending, with the property-tax line at the proposed <strong>52.0¢</strong> rate (~$16.6M).</p>
     </div>
   </div>
   <p class="note">Largest spending areas: Education + Community College (~$6.0M) · Sheriff + Jail + Dispatch (~$6.4M) · Social Services (~$2.9M) · Health (~$1.2M) · Rescue/EMS (~$1.3M). Property tax splits into ~$11.9M real &amp; personal property (homes, land, business equipment, boats) and ~$1.4M registered motor vehicles. Boats are taxed within "personal property," not broken out separately.</p>
@@ -284,12 +285,13 @@ new Chart(cRevenue,{type:'doughnut',
     tooltip:{callbacks:{label:c=>c.label+' ('+c.parsed+'%)'}}},cutout:'55%'}});
 
 new Chart(cGrowth,{
-  data:{labels:['FY19-20','FY20-21','FY21-22','FY22-23','FY23-24','FY24-25','FY25-26'],
+  data:{labels:['FY19-20','FY20-21','FY21-22','FY22-23','FY23-24','FY24-25','FY25-26',['FY26-27','proposed']],
     datasets:[
-      {type:'bar',label:'General fund ($M)',data:[19.9,20.9,22.8,23.9,24.6,25.8,27.0],
-        backgroundColor:NAVY,borderRadius:6,order:2},
-      {type:'line',label:'Property tax ($M)',data:[10.82,11.68,11.99,12.36,12.49,12.91,13.95],
-        borderColor:RED,backgroundColor:RED,tension:.3,borderWidth:3,pointRadius:3,order:1}]},
+      {type:'bar',label:'General fund ($M)',data:[19.9,20.9,22.8,23.9,24.6,25.8,27.0,30.1],
+        backgroundColor:[NAVY,NAVY,NAVY,NAVY,NAVY,NAVY,NAVY,'rgba(44,110,145,.4)'],borderRadius:6,order:2},
+      {type:'line',label:'Property tax ($M)',data:[10.82,11.68,11.99,12.36,12.49,12.91,13.95,16.6],
+        borderColor:RED,backgroundColor:RED,tension:.3,borderWidth:3,pointRadius:3,
+        pointBackgroundColor:[RED,RED,RED,RED,RED,RED,RED,'#fff'],pointBorderColor:RED,order:1}]},
   options:{plugins:{legend:{position:'bottom',labels:{boxWidth:12}},
     tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y+'M'}}},
     scales:{y:{ticks:{callback:v=>'$'+v+'M'}}}}});

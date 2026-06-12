@@ -141,7 +141,7 @@
   <p class="lead">When property values jump in a revaluation, the law requires the county to publish a <strong>revenue-neutral rate</strong> — the rate that brings in roughly the same money on the new, higher values. Pamlico's is about <strong>43.75¢</strong>; the county is instead proposing <strong>52.0¢</strong>. The headline rate is dropping from 64.5¢, so officials can say "we lowered your rate" — but because the revaluation raised values sharply, that "lower" rate still pulls in roughly <strong>19% more revenue than revenue-neutral</strong> — about <strong>$2.6 million a year extra</strong>.</p>
   <div class="card">
     <div class="chart-box"><canvas id="cWindfall"></canvas></div>
-    <p class="note"><strong>Rate figures as reported.</strong> The current proposal is <strong>52.0¢</strong> — the Commission <strong>raised it</strong> after floating lower figures (52.5¢ → 50.75¢ → 50.5¢, then back up to 52.0¢), against a revenue-neutral rate of about <strong>43.75¢</strong>. The last <em>officially adopted</em> rate is <strong>64.5¢</strong>. Revenue-neutral rises as appeals are factored in. Source: NC G.S. 159-11(e); June 2026 budget meetings.</p>
+    <p class="note"><strong>County property-tax revenue ($M), by year.</strong> Each blue bar is the property tax actually collected; the FY2026-27 columns split the two scenarios — <span style="color:#2e8b57;font-weight:700">green</span> is <strong>revenue-neutral (~43.75¢)</strong>, which holds revenue about flat, and <span style="color:#c0392b;font-weight:700">red</span> is the <strong>proposed 52.0¢</strong> — roughly <strong>19% more (~$2.6M extra)</strong>. After years of property tax barely keeping pace, the FY2026-27 jump stands out. (Rate trail: the Commission floated 52.5¢ → 50.75¢ → 50.5¢, then raised it back to 52.0¢; last adopted rate 64.5¢.) Source: NC G.S. 159-11(e); county budget docs.</p>
   </div>
   <div class="callout fact"><strong>In dollars:</strong> at ~43.75¢ the county collects about what it does today (~$14M in property tax). At 52.0¢ it collects roughly <strong>$16.6M — about $2.6 million more, every year</strong>, compounding as values rise.</div>
   <div class="callout"><strong>Documented:</strong> County Manager Mark Brewington and Finance Officer Alex Showalter ran budget workshops on the proposed figure; resistance to the hike isn't partisan — on the most recent property-tax increase, the recorded "no" votes came from Republican Vice-Chair <strong>Ed Riggs</strong> and Democrat <strong>Carl Ollison</strong>.</div>
@@ -268,14 +268,20 @@ Chart.defaults.font.family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-s
 Chart.defaults.font.size=13; Chart.defaults.color="#5b6b7a";
 const usd=v=>"$"+v.toLocaleString();
 
-new Chart(cWindfall,{type:'bar',
-  data:{labels:[['Revenue-neutral','(43.75¢)'],['Proposed','(52.0¢)'],['Old rate','(64.5¢)']],
-    datasets:[{label:'Cents per $100 of value',data:[43.75,52.0,64.5],
-      backgroundColor:[GREEN,RED,GREY],borderRadius:8}]},
-  options:{plugins:{legend:{display:false},
-    tooltip:{callbacks:{label:c=>c.parsed.y+'¢ per $100'}},
-    title:{display:true,text:'Proposed rate is ~8.25¢ (≈19%) above revenue-neutral',font:{size:15,weight:'700'},color:'#15202b'}},
-    scales:{y:{title:{display:true,text:'¢ per $100'},ticks:{callback:v=>v+'¢'}}}}});
+(function(){
+  if(!window.Chart||!document.getElementById("cWindfall")) return;
+  const labels=["FY19-20","FY20-21","FY21-22","FY22-23","FY23-24","FY24-25","FY25-26",["FY26-27","rev-neutral 43.75¢"],["FY26-27","proposed 52.0¢"]];
+  new Chart(document.getElementById("cWindfall"),{type:"bar",
+    data:{labels:labels,datasets:[
+      {label:"Property tax collected",data:[10.82,11.68,11.99,12.36,12.49,12.91,13.95,null,null],backgroundColor:"#2c6e91"},
+      {label:"FY26-27 at revenue-neutral (43.75¢)",data:[null,null,null,null,null,null,null,14.0,null],backgroundColor:"#2e8b57"},
+      {label:"FY26-27 proposed (52.0¢) — the windfall",data:[null,null,null,null,null,null,null,null,16.6],backgroundColor:"#c0392b"}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:"bottom",labels:{boxWidth:12,font:{size:11}}},
+        title:{display:true,text:"Property-tax revenue by year ($M) — the FY2026-27 jump"},
+        tooltip:{callbacks:{label:c=>c.dataset.label+": $"+c.parsed.y+"M"}}},
+      scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,ticks:{callback:v=>"$"+v+"M"}}}}});
+})();
 
 new Chart(cRevenue,{type:'doughnut',
   data:{labels:['Property tax ~52%','Sales tax ~18%','State aid ~10%','Savings spent ~8%','Jail lease ~4%','Other ~8%'],
